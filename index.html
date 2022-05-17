@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="wrapper">
 <form action="">
     <h1 title="Registration form">Registration Form</h1>
     <div class="group">
         <label for="name">First Name</label>
         <input required="" placeholder="Enter your first name..." id="name"
         type="text" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter your Given name!')">
+        oninvalid="this.setCustomValidity('Please Enter your Given Name!')">
     </div>
     <div class="group">
         <label for="fName">Last Name</label>
@@ -26,14 +26,14 @@
     <div class="group">
         <label for="dateOfB">Date of birth</label>
         <input required id="dateOfB" placeholder="yyyy.mm.dd"
-               type="text" oninput="setCustomValidity('')"
-               oninvalid="this.setCustomValidity('Please Enter your date of birth')">
+        type="text" oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please Enter your Date of Birth')">
     </div>
     <div class="group">
         <label for="radioButton1">Male</label>
         <input required type="radio" name="options" id="radioButton1"
-               oninput="setCustomValidity('')"
-               oninvalid="this.setCustomValidity('Please choose your gender')">
+        oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please choose your Gender')">
         <label for="radioButton2">Female</label>
         <input required type="radio" name="options" id="radioButton2">
         <label for="radioButton3">Other</label>
@@ -43,14 +43,14 @@
         <label for="email">E-mail</label>
         <input required id="email" placeholder="enter your e-mail address..."
         type="email" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter valid email')">
+        oninvalid="this.setCustomValidity('Please Enter valid Email')">
 
     </div>
     <div class="group">
         <label for="phone">Phone</label>
-        <input required id="phone" placeholder="enter your tel. phone number..." type="tel"
+        <input required id="phone" placeholder="+38(000)000-00-00" type="tel"
         oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter valid tel.phone number')">
+        oninvalid="this.setCustomValidity('Please Enter valid Tel.Phone Number')">
     </div>
     <div id="password" class="group">
         <label for="pass1">Password</label>
@@ -64,11 +64,11 @@
         <label for="pass2">Password</label>
         <input required id="pass2" placeholder="repeat your password..." type="password"
         oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please repeat password')">
+        oninvalid="this.setCustomValidity('Please repeat Password')">
         <i class="bi bi-eye-slash" id="togglePassword2"></i>
     </div>
     <div class="group" >
-    <label for="select">Where did you find us?</label>
+    <label for="select">How did you find us?</label>
     <select required id="select" name="select" oninput="setCustomValidity('')"
         oninvalid="this.setCustomValidity('Please choose one of the options')">
         <option value="value1">Through a friend</option>
@@ -83,16 +83,18 @@
     </div>
 
     <div id="agreements" class="group">
-      <label for="agreement">Agree with <a id="target" href="https://google.com" target="_blank">terms and conditions</a> </label>
+      <label for="agreement">Agree with <a id="target" href="terms.html" target="_blank">terms and conditions</a> </label>
       <input required id="agreement" type="checkbox" oninput="setCustomValidity('')"
       oninvalid="this.setCustomValidity('Please click the checkbox if you have carefully read, ' +
       'understood and agree with Terms and Conditions Agreement')">
+      <div id="content-area"></div>
     </div>
     <div class="group">
       <input required id="submit" value="Submit" type="submit">
     </div>
 
 </form>
+<script src="imask.js"></script>
 <script src="jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script src="script.js"></script>
