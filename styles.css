@@ -111,7 +111,8 @@ i{
     color: #dabd69;
 }
 #submit{
-    margin: auto 28%;
+    position: absolute;
+    margin:  auto 110px;
     height: 40px;
     width: 170px;
     color: #dabd69;
