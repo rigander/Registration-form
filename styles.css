@@ -37,8 +37,15 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
+#dateOfB{
+    margin-left: 10px;
+    height: 25px;
+    width: 220px;
+    background-color: #dabd69;
+    border: solid 3px #383a3e;
+    border-radius: 5px;}
 #email{
-    margin-left: 74px;
+    margin-left: 71px;
     height: 25px;
     width: 220px;
     background-color: #dabd69;
@@ -46,7 +53,7 @@ form{
     border-radius: 5px;
 }
 #phone{
-    margin-left: 80px;
+    margin-left: 76px;
     height: 25px;
     width: 220px;
     background-color: #dabd69;
@@ -67,13 +74,7 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
-#dateOfB{
-    margin-left: 12px;
-    height: 25px;
-    width: 222px;
-    background-color: #dabd69;
-    border: solid 3px #383a3e;
-    border-radius: 5px;}
+
 #password{
     padding-top: 50px;
 }
