@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href = "styles.css">
+    <link rel="stylesheet" href="jquery-ui.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form action="">
+    <h1 title="Registration form">Registration Form</h1>
+    <div class="group">
+        <label for="name">First Name</label>
+        <input required="" placeholder="Enter your first name..." id="name"
+        type="text" oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please Enter your Given name!')">
+    </div>
+    <div class="group">
+        <label for="fName">Last Name</label>
+        <input required placeholder="Enter your family name..." id="fName"
+        type="text" oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please Enter your Family Name')">
+    </div>
+    <div class="group">
+        <label for="dateOfB">Date of birth</label>
+        <input required id="dateOfB" placeholder="yyyy.mm.dd"
+               type="text" oninput="setCustomValidity('')"
+               oninvalid="this.setCustomValidity('Please Enter your date of birth')">
+    </div>
+    <div class="group">
+        <label for="radioButton1">Male</label>
+        <input required type="radio" name="options" id="radioButton1"
+               oninput="setCustomValidity('')"
+               oninvalid="this.setCustomValidity('Please choose your gender')">
+        <label for="radioButton2">Female</label>
+        <input required type="radio" name="options" id="radioButton2">
+        <label for="radioButton3">Other</label>
+        <input required type="radio" name="options" id="radioButton3">
+    </div>
+    <div class="group">
+        <label for="email">E-mail</label>
+        <input required id="email" placeholder="enter your e-mail address..."
+        type="email" oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please Enter valid email')">
+        <h2 id="result"></h2>
+    </div>
+    <div class="group">
+        <label for="phone">Phone</label>
+        <input required id="phone" placeholder="enter your tel. phone number..." type="tel"
+        oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please Enter valid tel.phone number')">
+    </div>
+    <div id="password" class="group">
+        <label for="pass1">Password</label>
+        <input required id="pass1" placeholder="enter your password..."
+        type="password" oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please Enter Password')">
+    </div>
+    <div class="group">
+        <div>Repeat</div>
+        <label for="pass2">Password</label>
+        <input required id="pass2" placeholder="repeat your password..." type="password"
+        oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please repeat password')">
+    </div>
+    <div class="group" >
+    <label for="select">Where did you find us?</label>
+    <select required id="select" name="select" oninput="setCustomValidity('')"
+        oninvalid="this.setCustomValidity('Please choose one of the options')">
+        <option value="value1">Through a friend</option>
+        <option value="value2" selected>Google</option>
+        <option value="value3">Social media</option>
+        <option value="value4">Indeed</option>
+        <option value="value5">LinkedIn</option>
+        <option value="value6">Facebook</option>
+        <option value="value7">Creep who was stalking me</option>
+        <option value="value8">Other</option>
+    </select>
+    </div>
+
+    <div id="agreements" class="group">
+      <label for="agreement">Agree with <a id="target" href="https://google.com" target="_blank">terms and conditions</a> </label>
+      <input required id="agreement" type="checkbox" oninput="setCustomValidity('')"
+      oninvalid="this.setCustomValidity('Please click the checkbox if you have carefully read, ' +
+      'understood and agree with Terms and Conditions Agreement')">
+    </div>
+    <div class="group">
+      <input required id="submit" value="Submit" type="submit">
+    </div>
+
+</form>
+<script src="jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
