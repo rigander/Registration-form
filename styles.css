@@ -95,19 +95,31 @@ i{
     padding-top: 40px;
     padding-bottom: 10px;
 }
+#terms{
+    color: #dabd69;
+    padding-left: 8px;
+}
 #content-area {
     display:none;
     height:200px;
     overflow:auto;
     margin-bottom:1.5em;
     padding:10px;
-    border:solid 1px #d7d7d7;
+    border:solid 2px #383a3f;
+    border-radius: 3px;
     color:#505050;
-    background-color:#ffffff;
+    background-color: #d8bc69;
     font-size:90%;
 }
-#target{
+#content-area::-webkit-scrollbar {
+    width: 11px;
+    background-color: #5a503d;
+}
+#content-area::-webkit-scrollbar-thumb{
+    background-color: white;
+}
 
+#target{
     color: #dabd69;
 }
 #submit{
@@ -125,4 +137,9 @@ i{
     color: #ad6c79;
     background-color: #e7eaed;
 
+}
+#message{
+    position: absolute;
+    margin: 10px 150px;
+    font-size: 19px;
 }

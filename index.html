@@ -56,15 +56,16 @@
         <label for="pass1">Password</label>
         <input required id="pass1" placeholder="enter your password..."
         type="password" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter Password')">
+        oninvalid="this.setCustomValidity('Please Enter Password')" onkeyup='check();'>
         <i class="bi bi-eye-slash" id="togglePassword"></i>
     </div>
+    <span id='message'></span>
     <div class="group">
         <div>Repeat</div>
         <label for="pass2">Password</label>
         <input required id="pass2" placeholder="repeat your password..." type="password"
         oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please repeat Password')">
+        oninvalid="this.setCustomValidity('Please repeat Password')" onkeyup='check();'>
         <i class="bi bi-eye-slash" id="togglePassword2"></i>
     </div>
     <div class="group" >
@@ -83,11 +84,14 @@
     </div>
 
     <div id="agreements" class="group">
-      <label for="agreement">Agree with <a id="target" href="terms.html" target="_blank">terms and conditions</a> </label>
       <input required id="agreement" type="checkbox" oninput="setCustomValidity('')"
       oninvalid="this.setCustomValidity('Please click the checkbox if you have carefully read, ' +
-      'understood and agree with Terms and Conditions Agreement')">
-      <div id="content-area"></div>
+      'understood and agree with Terms and Conditions Agreement')"/> I agree to the<a href="terms.html" id="terms">terms &amp; conditions</a></div>
+    <div id="content-area">‘By downloading an ebook via this website, you agree to grant us a non-transferable option to be on the naughty list for the rest of your life. Should we wish to exercise this option, you agree to be put on Santa’s naughty list. We reserve the right to serve such notice, however, we can accept no liability for any loss or damage caused by such an act. If you a) do not believe in Christmas, b) are already on the naughty list, or c) do not wish to grant us such a license, please send an email to the address below to nullify this sub-clause and proceed with your download.
+
+        By downloading an ebook via this website, you agree to grant us a non-transferable option to let us name your firstborn child. Should we wish to exercise this option, you agree to surrender control over choosing the name, and any claim you may have on it. We reserve the right to serve such notice, however, we can accept no liability for any loss or damage caused by such an act. If you a) do not believe you want a child, b) have had your firstborn child already or c) do not wish to grant us such a license, please send an email to the address below to nullify this sub-clause and proceed with your download.
+
+        By downloading an ebook via this website, you agree to grant us a non-transferable option to not eat pizza for the next 12 months. Should we wish to exercise this option, you agree to refuse any type of pizza for the next 12 months. We reserve the right to serve such notice, however, we can accept no liability for any loss or damage caused by such an act. If you a) can’t be without pizza b) have already planned to eat pizza, or c) do not wish to grant us such a license, please send an email to the address below to nullify this sub-clause and proceed with your download.’</div>
     </div>
     <div class="group">
       <input required id="submit" value="Submit" type="submit">

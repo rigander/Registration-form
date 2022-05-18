@@ -11,7 +11,7 @@ $(document).ready(function (){
         });
     //Terms and conditions
     jQuery.fn.terms_agree = function(content_area, selector) {
-        let body = $('.wrapper');
+        let body = $('body');
         $(this).click(function() {
             body.css("height", "auto").css("height", body.height());
             if ($(content_area).html() == "") {
@@ -20,10 +20,10 @@ $(document).ready(function (){
             $(content_area).slideToggle();
             return false;
         });
-    }
 
+    }
     $(function() {
-        $("target").terms_agree("#content-area", "#small-print");
+        $("#terms").terms_agree("#content-area", "#small-print");
     });
 })
 const element = document.getElementById('phone');
@@ -38,6 +38,7 @@ const password = document.getElementById('pass1');
 const togglePassword = document.getElementById('togglePassword');
 const repeatPassword = document.getElementById('pass2');
 const toggleRepeatPassword = document.getElementById('togglePassword2');
+const message = document.getElementById('message');
 
 togglePassword.addEventListener('click', function () {
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -53,6 +54,22 @@ const form =document.querySelector('form');
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 })
+
+//Check if Password equals Repeat Password
+const check = function() {
+    if (password.value === repeatPassword.value) {
+        message.style.color = 'green';
+        message.innerHTML = 'password matching';
+    } if(password.value !== repeatPassword.value) {
+        message.style.color = 'red';
+        message.innerHTML = 'password not matching';
+    } if(password.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8})$/)) {
+        
+    }
+}
+
+
+
 
 
 
