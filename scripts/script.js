@@ -22,9 +22,7 @@ $(document).ready(function (){
         });
 
     }
-    $(function() {
         $("#terms").terms_agree("#content-area", "#small-print");
-    });
 })
 const element = document.getElementById('phone');
 const maskOptions = {
@@ -64,7 +62,7 @@ const check = function() {
         message.style.color = 'red';
         message.innerHTML = 'password not matching';
     } if(password.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8})$/)) {
-        
+
     }
 }
 
