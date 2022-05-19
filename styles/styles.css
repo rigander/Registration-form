@@ -140,6 +140,11 @@ i{
 }
 #message{
     position: absolute;
-    margin: 10px 150px;
+    margin: 0 150px;
+    font-size: 19px;
+}
+#message2{
+    position: absolute;
+    margin: 27px 150px;
     font-size: 19px;
 }
