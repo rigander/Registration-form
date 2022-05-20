@@ -60,6 +60,12 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
+#phoneErrorMessage{
+    position: absolute;
+    margin: 35px -225px;
+    font-size: 16px;
+    color: red;
+}
 #pass1{
     height: 25px;
     width: 240px;

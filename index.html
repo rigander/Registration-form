@@ -51,6 +51,7 @@
         <input required id="phone" placeholder="+38(000)000-00-00" type="tel"
         oninput="setCustomValidity('')"
         oninvalid="this.setCustomValidity('Please Enter valid Tel.Phone Number')">
+        <span id="phoneErrorMessage"></span>
     </div>
     <div id="password" class="group">
         <label for="pass1">Password</label>
@@ -61,7 +62,7 @@
     </div>
     <span id='message'></span>
     <span id='message2'></span>
-    <div class="group">
+    <div id="checkPass" class="group">
         <div>Repeat</div>
         <label for="pass2">Password</label>
         <input required id="pass2" placeholder="repeat your password..." type="password"
