@@ -57,7 +57,7 @@
         <label for="pass1">Password</label>
         <input required id="pass1" placeholder="enter your password..."
         type="password" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter Password')" onkeyup='check();'>
+        oninvalid="this.setCustomValidity('Please Enter Password')">
         <i class="bi bi-eye-slash" id="togglePassword"></i>
     </div>
     <span id='message'></span>
@@ -67,7 +67,7 @@
         <label for="pass2">Password</label>
         <input required id="pass2" placeholder="repeat your password..." type="password"
         oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please repeat Password')" onkeyup='check();'>
+        oninvalid="this.setCustomValidity('Please repeat Password')">
         <i class="bi bi-eye-slash" id="togglePassword2"></i>
     </div>
     <div class="group" >
@@ -100,9 +100,9 @@
     </div>
 
 </form>
-<script src="plugins/imask.js"></script>
+<script src="https://unpkg.com/imask"></script>
 <script src="plugins/libraries/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script src="scripts/script2.js"></script>
+<script src="scripts/script.js"></script>
 </body>
 </html>

@@ -27,11 +27,10 @@ $(document).ready(function (){
         $("#terms").terms_agree("#content-area", "#small-print");
 
 // Tel.phone Mask
-    const maskOptions = {
-        mask: '+38(000)000-00-00',
-        lazy: false
-    }
-    const mask = new IMask($('phone'), maskOptions);
+    const phoneMask =
+         { mask: '+38(000)000-00-00' };
+    IMask($('#phone'), phoneMask);
+
 
 //Check if Password equals Repeat Password
     $('#pass1, #pass2').on('keyup', function () {

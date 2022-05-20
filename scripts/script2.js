@@ -25,7 +25,7 @@ function phonePattern(phone)
     }
     else
     {
-        return phoneMessage.innerHTML = 'Wrong Tel.Number. Please Follow Pattern';
+        return phoneMessage.innerHTML = 'Wrong Tel.Number. Follow Pattern';
     }
 }
 submit.addEventListener('click', () =>{
