@@ -13,10 +13,22 @@ const i2 = document.querySelector('#togglePassword2');
 i2.style.visibility = 'hidden';
 
 // Phone pattern
-
-
-
-
+phone.placeholder = '+380000000000';
+function phonePattern(phone)
+{
+    let RegExpM = /^\+\d{12}$/;
+    if(phone.value.match(RegExpM))
+    {
+        return phoneMessage.innerHTML = '';
+    }
+    else
+    {
+        return phoneMessage.innerHTML = 'Wrong Tel.Number. PLease Follow Pattern';
+    }
+}
+submit.addEventListener('click', () =>{
+    phonePattern(phone);
+});
 
 
 // Creating checkbox for password and checkbox event
@@ -57,7 +69,7 @@ const check = function() {
     } if(password.value !== repeatPassword.value) {
         message.style.color = 'red';
         message.innerHTML = 'Password Not Matching';
-        submit.disabled = true;
+
     }
 }
 password.addEventListener('keydown', check);
@@ -65,7 +77,7 @@ const emptyPassFieldsCheck = function () {
     if(password.value === '') {
         message.style.color = 'red';
         message.innerHTML = 'Please Fill Up Password Fields';
-        submit.disabled = true;
+
     }
 }
 submit.addEventListener('click', emptyPassFieldsCheck);
