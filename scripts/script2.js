@@ -11,6 +11,8 @@ const i = document.querySelector('#togglePassword');
 i.style.visibility = 'hidden';
 const i2 = document.querySelector('#togglePassword2');
 i2.style.visibility = 'hidden';
+const dateInput = document.querySelector('#dateOfB');
+dateInput.type = 'date';
 
 // Phone Pattern
 phone.placeholder = '+380000000000';
