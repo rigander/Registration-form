@@ -23,7 +23,7 @@ function phonePattern(phone)
     }
     else
     {
-        return phoneMessage.innerHTML = 'Wrong Tel.Number. PLease Follow Pattern';
+        return phoneMessage.innerHTML = 'Wrong Tel.Number. Please Follow Pattern';
     }
 }
 submit.addEventListener('click', () =>{
