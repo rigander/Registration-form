@@ -22,15 +22,11 @@ $(document).ready(function (){
             $(content_area).slideToggle();
             return false;
         });
-
     }
         $("#terms").terms_agree("#content-area", "#small-print");
 
 // Tel.phone Mask
-    const phoneMask =
-         { mask: '+38(000)000-00-00' };
-    IMask($('#phone'), phoneMask);
-
+        $("#phone").mask("+(999) 99-999-9999", {placeholder: ""});
 
 //Check if Password equals Repeat Password
     $('#pass1, #pass2').on('keyup', function () {
