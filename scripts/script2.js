@@ -12,7 +12,7 @@ i.style.visibility = 'hidden';
 const i2 = document.querySelector('#togglePassword2');
 i2.style.visibility = 'hidden';
 
-// Phone pattern
+// Phone Pattern
 phone.placeholder = '+380000000000';
 function phonePattern(phone)
 {
