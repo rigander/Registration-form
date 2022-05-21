@@ -9,71 +9,61 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body class="wrapper">
-<form id="form" action="">
+<form action="#" name="registration" id="form">
     <h1 title="Registration form">Registration Form</h1>
     <div class="group">
         <label for="name">First Name</label>
-        <input required="" placeholder="Enter your first name..." id="name"
-        type="text" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter your Given Name!')">
+        <input minlength="2" placeholder="Enter your first name..." id="name" name="firstName" type="text">
+        <span id="invalidName" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="fName">Last Name</label>
-        <input required placeholder="Enter your family name..." id="fName"
-        type="text" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter your Family Name')">
+        <input minlength="2"  placeholder="Enter your family name..." id="fName" name="lastName" type="text">
+        <span id="invalidFName" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="dateOfB">Date of birth</label>
-        <input required id="dateOfB" placeholder="yyyy.mm.dd"
-        type="text" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter your Date of Birth')">
+        <input  id="dateOfB" placeholder="yyyy.mm.dd" type="text" name="dateOfBirth">
+        <span id="invalidDOB" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="radioButton1">Male</label>
-        <input required type="radio" name="options" id="radioButton1"
-        oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please choose your Gender')">
+        <input  type="radio" name="options" id="radioButton1">
         <label for="radioButton2">Female</label>
-        <input required type="radio" name="options" id="radioButton2">
+        <input  type="radio" name="options" id="radioButton2">
         <label for="radioButton3">Other</label>
-        <input required type="radio" name="options" id="radioButton3">
+        <input type="radio" name="options" id="radioButton3">
+        <span id="invalidGender" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="email">E-mail</label>
-        <input required id="email" placeholder="enter your e-mail address..."
-        type="email" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter valid Email')">
-
+        <input  id="email" placeholder="enter your e-mail address..." type="email" name="yourEmail">
+        <span id="invalidEmail" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="phone">Phone</label>
-        <input required id="phone" placeholder="+(380)00-000-0000" type="tel"
-        oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter valid Tel.Phone Number')">
-        <span id="phoneErrorMessage"></span>
+        <input name="phoneNumber" id="phone" placeholder="+(000)00-000-0000" type="text">
+        <span id="invalidPhone" class="valid-feedback"></span>
     </div>
     <div id="password" class="group">
         <label for="pass1">Password</label>
-        <input required id="pass1" placeholder="enter your password..."
-        type="password" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please Enter Password')">
+        <input name="password1"  id="pass1" placeholder="enter your password..."
+        type="password">
         <i class="bi bi-eye-slash" id="togglePassword"></i>
+        <span id="invalidPass" class="valid-feedback"></span>
+        <span id="invalidRepeatPass" class="valid-feedback"></span>
     </div>
-    <span id='message'></span>
-    <span id='message2'></span>
+
     <div id="checkPass" class="group">
         <div>Repeat</div>
         <label for="pass2">Password</label>
-        <input required id="pass2" placeholder="repeat your password..." type="password"
-        oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please repeat Password')">
+        <input name="confirmPassword"  id="pass2" placeholder="repeat your password..." type="password">
         <i class="bi bi-eye-slash" id="togglePassword2"></i>
+
     </div>
     <div class="group" >
     <label for="select">How did you find us?</label>
-    <select required id="select" name="select" oninput="setCustomValidity('')"
-        oninvalid="this.setCustomValidity('Please choose one of the options')">
+    <select  id="select" name="select">
         <option value="value1">Through a friend</option>
         <option value="value2" selected>Google</option>
         <option value="value3">Social media</option>
@@ -83,26 +73,23 @@
         <option value="value7">Creep who was stalking me</option>
         <option value="value8">Other</option>
     </select>
+        <span id="invalidSelect" class="valid-feedback"></span>
     </div>
 
     <div id="agreements" class="group">
-      <input required id="agreement" type="checkbox" oninput="setCustomValidity('')"
-      oninvalid="this.setCustomValidity('Please click the checkbox if you have carefully read, ' +
-      'understood and agree with Terms and Conditions Agreement')"/> I agree to the<a href="terms.html" id="terms">terms &amp; conditions</a></div>
-    <div id="content-area">‘By downloading an ebook via this website, you agree to grant us a non-transferable option to be on the naughty list for the rest of your life. Should we wish to exercise this option, you agree to be put on Santa’s naughty list. We reserve the right to serve such notice, however, we can accept no liability for any loss or damage caused by such an act. If you a) do not believe in Christmas, b) are already on the naughty list, or c) do not wish to grant us such a license, please send an email to the address below to nullify this sub-clause and proceed with your download.
-
-        By downloading an ebook via this website, you agree to grant us a non-transferable option to let us name your firstborn child. Should we wish to exercise this option, you agree to surrender control over choosing the name, and any claim you may have on it. We reserve the right to serve such notice, however, we can accept no liability for any loss or damage caused by such an act. If you a) do not believe you want a child, b) have had your firstborn child already or c) do not wish to grant us such a license, please send an email to the address below to nullify this sub-clause and proceed with your download.
-
-        By downloading an ebook via this website, you agree to grant us a non-transferable option to not eat pizza for the next 12 months. Should we wish to exercise this option, you agree to refuse any type of pizza for the next 12 months. We reserve the right to serve such notice, however, we can accept no liability for any loss or damage caused by such an act. If you a) can’t be without pizza b) have already planned to eat pizza, or c) do not wish to grant us such a license, please send an email to the address below to nullify this sub-clause and proceed with your download.’</div>
+      <input name="checkTerms"  id="agreement" type="checkbox"/>
+        I agree to the<a href="terms.html" id="terms">terms &amp; conditions</a></div>
+    <div id="content-area"> Alright, alright, alright...</div>
     </div>
     <div class="group">
-      <input required id="submit" value="Submit" type="submit">
+      <input name="submitButton" id="submit" value="Submit" type="submit">
     </div>
 
 </form>
 <script src="lib/jquery-3.6.0.js" type="text/javascript"></script>
 <script src="plugins/jquery.maskedinput.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="src/main.js"></script>
 </body>
 </html>

@@ -31,9 +31,9 @@ $(document).ready(function (){
 //Check if Password equals Repeat Password
     $('#pass1, #pass2').on('keyup', function () {
         if ($('#pass1').val() === $('#pass2').val()) {
-            $('#message').html('Password Matching').css('color', 'green');
+            $('#invalidRepeatPass').html('Password Matching').css('color', 'green');
         } else
-            $('#message').html('Password Not Matching').css('color', 'red');
+            $('#invalidRepeatPass').html('Password Not Matching').css('color', 'red');
     });
 
 //Password visibility during input
@@ -65,16 +65,46 @@ $(document).ready(function (){
                 validated = false;
             if(/[^0-9a-zA-Z]/.test(this.value))
                 validated = false;
-            validated ? $('#message2').html('Strong Password').css('color', 'green') : $('#message2').html('Weak Password').css('color', 'red');
+            validated ? $('#invalidPass').html('Strong Password').css('color', 'green') : $('#invalidPass').html('Weak Password').css('color', 'red');
         });
     });
 
+
+
+    $("#form").validate({
+         rules: {
+            firstName:{
+                required:true,
+            },
+            lastName: "required",
+            dateOfBirth: "required",
+            options: "required",
+            yourEmail: {
+                required: true,
+                email: true,
+            },
+            phoneNumber: "required",
+            password1: "required",
+            confirmPassword: "required",
+            select: "required",
+            checkTerms: "required",
+        },
+        messages: {
+            firstName: "Fill up First Name",
+            lastName: "Fill up Last Name",
+            dateOfBirth: "Fill up Date of Birth",
+            options: "Choose your gender",
+            yourEmail: "Fill up your email",
+            phoneNumber: "Fill up your phone number",
+            password1: "Fill up password",
+            confirmPassword: "Confirm password",
+            select: "Select One",
+            checkTerms: "Please read and accept if agree",
+        }
+
+    });
+
 })
-
-
-
-
-
 
 
 

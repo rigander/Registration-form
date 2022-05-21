@@ -155,3 +155,26 @@ i{
     margin: 27px 150px;
     font-size: 19px;
 }
+
+.valid-feedback{
+    position: absolute;
+    color: green;
+    font-size: 16px;
+    display: block;
+    margin-top: 15px;
+    margin-left: 21%;
+}
+#invalidRepeatPass{
+    position: absolute;
+    display: block;
+    margin-top: 28px;
+}
+label.error{}
+label.error{
+    color:red;
+    font-size: 16px;
+    position: absolute;
+    display: block;
+    margin-left: 160px;
+
+}
