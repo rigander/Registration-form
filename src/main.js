@@ -34,7 +34,7 @@ $(document).ready(function (){
             $('#invalidRepeatPass').html('Password Matching').css('color', 'green');
         } else {
             $('#invalidRepeatPass').html('Password Not Matching').css('color', 'red');
-            $("#submit").attr("disabled", true);
+
         }
     });
 
@@ -91,7 +91,7 @@ $(document).ready(function (){
             options: "Choose your gender",
             Email: "Fill up your email",
             phoneNumber: "Fill up your phone number",
-            password1: "Fill up password",
+            Password: "Fill up password",
             confirmPassword: "Confirm password",
             gender: "Select One",
             checkTerms: "Please read and accept if agree",
@@ -99,35 +99,26 @@ $(document).ready(function (){
 
     });
 
-// AJAX POST form data
-//         $('#submit').on('click', ()=>{
-//         let str = $(this).serialize();
-//         $.ajax({
-//             type: 'POST',
-//             url: '',
-//             data: str,
-//             success: function () {
-//                 console.log(str);
-//             },
-//             error: function () {
-//                 console.log('error sending data')
-//             },
-//         });
-//     })
 
-   $( "form" ).on( "submit", function() {
-       let str = $(this).serialize();
-       $.ajax({
-           type: 'POST',
-           url: '',
-           data: str,
-           success: function () {
-               console.log(str);
-           },
-           error: function () {
-               console.log('error sending data')
-           },
-       });
+
+// AJAX POST form data
+
+   $( "#submit" ).on( "click", function(event) {
+       event.preventDefault();
+       let str = $('form').serialize();
+       if ($('#form').valid()===true){
+           $.ajax({
+               type: 'POST',
+               url: 'http://registration.form/php/request.php',
+               data: str,
+               success: function () {
+                   console.log('data successfully send');
+               },
+               error: function () {
+                   console.log('error sending data');
+               },
+           });
+       } else return console.log('validation failed');
        });
 
 })
