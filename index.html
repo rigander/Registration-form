@@ -28,16 +28,16 @@
     </div>
     <div class="group">
         <label for="radioButton1">Male</label>
-        <input  type="radio" name="options" id="radioButton1">
+        <input  type="radio" name="gender" value="male" id="radioButton1">
         <label for="radioButton2">Female</label>
-        <input  type="radio" name="options" id="radioButton2">
+        <input  type="radio" name="gender" value="female" id="radioButton2">
         <label for="radioButton3">Other</label>
-        <input type="radio" name="options" id="radioButton3">
+        <input type="radio" name="gender" value="other" id="radioButton3">
         <span id="invalidGender" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="email">E-mail</label>
-        <input  id="email" placeholder="enter your e-mail address..." type="email" name="yourEmail">
+        <input  id="email" placeholder="enter your e-mail address..." type="email" name="Email">
         <span id="invalidEmail" class="valid-feedback"></span>
     </div>
     <div class="group">
@@ -47,7 +47,7 @@
     </div>
     <div id="password" class="group">
         <label for="pass1">Password</label>
-        <input name="password1"  id="pass1" placeholder="enter your password..."
+        <input name="Password"  id="pass1" placeholder="enter your password..."
         type="password">
         <i class="bi bi-eye-slash" id="togglePassword"></i>
         <span id="invalidPass" class="valid-feedback"></span>
@@ -63,15 +63,15 @@
     </div>
     <div class="group" >
     <label for="select">How did you find us?</label>
-    <select  id="select" name="select">
-        <option value="value1">Through a friend</option>
-        <option value="value2" selected>Google</option>
-        <option value="value3">Social media</option>
-        <option value="value4">Indeed</option>
-        <option value="value5">LinkedIn</option>
-        <option value="value6">Facebook</option>
-        <option value="value7">Creep who was stalking me</option>
-        <option value="value8">Other</option>
+    <select  id="select" name="How-did-you-find-us">
+        <option value="Through a friend">Through a friend</option>
+        <option value="Google" selected>Google</option>
+        <option value="Social media">Social media</option>
+        <option value="Indeed">Indeed</option>
+        <option value="LinkedIn">LinkedIn</option>
+        <option value="Facebook">Facebook</option>
+        <option value="Some creep">Creep who was stalking me</option>
+        <option value="Other">Other</option>
     </select>
         <span id="invalidSelect" class="valid-feedback"></span>
     </div>

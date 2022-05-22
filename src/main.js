@@ -57,20 +57,13 @@ $(document).ready(function (){
             let validated =  true;
             if(this.value.length < 8)
                 validated = false;
-            if(!/\d/.test(this.value))
-                validated = false;
-            if(!/[a-z]/.test(this.value))
-                validated = false;
-            if(!/[A-Z]/.test(this.value))
-                validated = false;
-            if(/[^0-9a-zA-Z]/.test(this.value))
+            if(/[^\d][^a-z][^A-Z][^0-9a-zA-Z]/.test(this.value))
                 validated = false;
             validated ? $('#invalidPass').html('Strong Password').css('color', 'green') : $('#invalidPass').html('Weak Password').css('color', 'red');
         });
     });
 
-
-
+//JQ Validation plug-in
     $("#form").validate({
          rules: {
             firstName:{
@@ -79,14 +72,14 @@ $(document).ready(function (){
             lastName: "required",
             dateOfBirth: "required",
             options: "required",
-            yourEmail: {
+            Email: {
                 required: true,
                 email: true,
             },
             phoneNumber: "required",
-            password1: "required",
+            Password: "required",
             confirmPassword: "required",
-            select: "required",
+            gender: "required",
             checkTerms: "required",
         },
         messages: {
@@ -94,15 +87,32 @@ $(document).ready(function (){
             lastName: "Fill up Last Name",
             dateOfBirth: "Fill up Date of Birth",
             options: "Choose your gender",
-            yourEmail: "Fill up your email",
+            Email: "Fill up your email",
             phoneNumber: "Fill up your phone number",
             password1: "Fill up password",
             confirmPassword: "Confirm password",
-            select: "Select One",
+            gender: "Select One",
             checkTerms: "Please read and accept if agree",
         }
 
     });
+
+
+   $( "form" ).on( "submit", function() {
+       let str = $(this).serialize();
+       $.ajax({
+           type: 'POST',
+           url: '',
+           data: str,
+           success: function () {
+               console.log(str);
+           },
+           error: function () {
+               console.log('error sending data')
+           },
+       });
+       });
+
 
 })
 
