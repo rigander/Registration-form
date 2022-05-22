@@ -70,8 +70,12 @@ $(document).ready(function (){
          rules: {
             firstName:{
                 required:true,
+                minlength: 2
             },
-            lastName: "required",
+            lastName:{
+             required: true,
+             minlength: 2
+            },
             dateOfBirth: "required",
             options: "required",
             Email: {
@@ -79,8 +83,15 @@ $(document).ready(function (){
                 email: true,
             },
             phoneNumber: "required",
-            Password: "required",
-            confirmPassword: "required",
+            Password: {
+                required: true,
+                minlength: 8
+            },
+            confirmPassword:{
+                required: true,
+                minlength: 8,
+                equalTo: "#pass1"
+            },
             gender: "required",
             checkTerms: "required",
         },
