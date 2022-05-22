@@ -32,8 +32,10 @@ $(document).ready(function (){
     $('#pass1, #pass2').on('keyup', function () {
         if ($('#pass1').val() === $('#pass2').val()) {
             $('#invalidRepeatPass').html('Password Matching').css('color', 'green');
-        } else
+        } else {
             $('#invalidRepeatPass').html('Password Not Matching').css('color', 'red');
+            $("#submit").attr("disabled", true);
+        }
     });
 
 //Password visibility during input
@@ -97,6 +99,21 @@ $(document).ready(function (){
 
     });
 
+// AJAX POST form data
+//         $('#submit').on('click', ()=>{
+//         let str = $(this).serialize();
+//         $.ajax({
+//             type: 'POST',
+//             url: '',
+//             data: str,
+//             success: function () {
+//                 console.log(str);
+//             },
+//             error: function () {
+//                 console.log('error sending data')
+//             },
+//         });
+//     })
 
    $( "form" ).on( "submit", function() {
        let str = $(this).serialize();
@@ -112,7 +129,6 @@ $(document).ready(function (){
            },
        });
        });
-
 
 })
 
