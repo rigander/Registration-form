@@ -110,10 +110,7 @@ $(document).ready(function (){
 
     });
 
-
-
 // AJAX POST form data
-
    $( "#submit" ).on( "click", function(event) {
        event.preventDefault();
        let str = $('form').serialize();

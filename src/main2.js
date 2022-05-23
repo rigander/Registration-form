@@ -1,31 +1,27 @@
 const password = document.getElementById('pass1');
 const repeatPassword = document.getElementById('pass2');
 const phone = document.querySelector('#phone');
-const phoneMessage = document.querySelector('#phoneErrorMessage');
-const message = document.getElementById('message');
+const phoneMessage = document.querySelector('#invalidPhone');
+const passwordsNotEqual = document.getElementById('passwordsNotEqual');
 const message2 = document.getElementById('message2');
 const submit = document.querySelector('#submit');
 const checkPass2 = document.querySelector('#checkPass');
 const checkPass = document.querySelector('#password');
-const i = document.querySelector('#togglePassword');
-i.style.visibility = 'hidden';
-const i2 = document.querySelector('#togglePassword2');
-i2.style.visibility = 'hidden';
 const dateInput = document.querySelector('#dateOfB');
-dateInput.type = 'date';
+
 
 // Phone Pattern
-phone.placeholder = '+380000000000';
 function phonePattern(phone)
 {
-    let RegExpM = /^\+\d{12}$/;
-    if(phone.value.match(RegExpM))
+        if(phone.value.match(/^\+\d{12}$/))
     {
-        return phoneMessage.innerHTML = '';
+        phoneMessage.innerHTML = 'Looks Good';
+        phoneMessage.style.color = 'Green';
     }
     else
     {
-        return phoneMessage.innerHTML = 'Wrong Tel.Number. Follow Pattern';
+        phoneMessage.innerHTML = 'Wrong Tel.Number. Follow Pattern';
+        return submit.disabled = true;
     }
 }
 submit.addEventListener('click', () =>{
@@ -66,15 +62,17 @@ checkbox2.onchange = function (){
 //Check if Password equals Repeat Password
 const check = function() {
     if (password.value === repeatPassword.value) {
-        message.style.color = 'green';
-        message.innerHTML = 'Password Matching';
+        passwordsNotEqual.style.color = 'green';
+        passwordsNotEqual.innerHTML = 'Password Matching';
     } if(password.value !== repeatPassword.value) {
-        message.style.color = 'red';
-        message.innerHTML = 'Password Not Matching';
+        passwordsNotEqual.style.color = 'red';
+        passwordsNotEqual.innerHTML = 'Password Not Matching';
 
     }
 }
-password.addEventListener('keydown', check);
+password.addEventListener('keypress', check);
+repeatPassword.addEventListener('keypress', check);
+
 const emptyPassFieldsCheck = function () {
     if(password.value === '') {
         message.style.color = 'red';
