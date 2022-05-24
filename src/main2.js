@@ -13,7 +13,7 @@ const invalidEmail = document.getElementById('invalidEmail');
 const password = document.getElementById('pass1');
 const repeatPassword = document.getElementById('pass2');
 const phone = document.querySelector('#phone');
-const phoneMessage = document.querySelector('#invalidPhone');
+const invalidPhoneMessage = document.querySelector('#invalidPhone');
 const passwordsNotEqual = document.getElementById('passwordsNotEqual');
 const invalidPassword = document.getElementById('invalidPass');
 const invalidConfirmPassword = document.getElementById('invalidRepeatPass');
@@ -27,7 +27,7 @@ const checkPass = document.querySelector('#password');
 function elValidate() {
     if ( (validateName() === false)||(validateFamilyName() === false)||
         (validateDateOfBirth() === false)||(validateGenderCheck() === false)
-        ||(validateEmail() === false) ) {
+        ||(validateEmail() === false)||(validatePhone() === false) ) {
          return   console.log('submit not permitted');
         } else {
         console.log('submit permitted');
@@ -97,7 +97,6 @@ function validateGenderCheck() {
 }
 
 //Validate e-mail
-
 function trim(s) {
     return s.replace(/^\s+|\s+$/, ''); // removes whitespace
 }
@@ -130,25 +129,34 @@ function validateEmail() {
     return validation;
 }
 
-
-
 // Phone Pattern
-function phonePattern(phone)
-{
-        if(phone.value.match(/^\+\d{12}$/))
-    {
-        phoneMessage.innerHTML = 'Looks Good';
-        phoneMessage.style.color = 'Green';
+function validatePhone(){
+const illegalChars = /[^\d]/;
+const stripped = phone.value.replace(/[\+()\.\-\ ]/gi, '');
+    if(phone.value === '') {
+        invalidPhoneMessage.innerHTML = 'Please enter a phone number';
+        invalidPhoneMessage.style.color = 'red';
+        phone.style.borderColor = 'red';
+        validation = false;
+    } else if (illegalChars.test(stripped)) {
+        invalidPhoneMessage.innerHTML = 'Phone number contain illegal characters';
+        invalidPhoneMessage.style.color = 'red';
+        phone.style.borderColor = 'red';
+        validation = false;
+    } else if (stripped.length<10) {
+        invalidPhoneMessage.innerHTML = 'The phone number is too short'
+        invalidPhoneMessage.style.color = 'red';
+        phone.style.borderColor = 'red';
+        validation = false;
+    } else {
+        invalidPhoneMessage.innerHTML = 'Looks Good'
+        invalidPhoneMessage.style.color = 'green';
+        phone.style.borderColor = 'green';
+        validation = true;
     }
-    else
-    {
-        phoneMessage.innerHTML = 'Wrong Tel.Number. Follow Pattern';
-        return submit.disabled = true;
-    }
+    return validation;
 }
-submit.addEventListener('click', () =>{
-    phonePattern(phone);
-});
+
 
 
 // Creating checkbox for password and checkbox event
