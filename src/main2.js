@@ -20,6 +20,8 @@ const invalidConfirmPassword = document.getElementById('invalidRepeatPass');
 const submit = document.querySelector('#submit');
 const checkPass2 = document.querySelector('#checkPass');
 const checkPass = document.querySelector('#password');
+const tooShortPassword = document.getElementById('shortPass');
+const tooShortRepeatPassword = document.getElementById('shortRepeatPass');
 
 
 
@@ -27,7 +29,8 @@ const checkPass = document.querySelector('#password');
 function elValidate() {
     if ( (validateName() === false)||(validateFamilyName() === false)||
         (validateDateOfBirth() === false)||(validateGenderCheck() === false)
-        ||(validateEmail() === false)||(validatePhone() === false) ) {
+        ||(validateEmail() === false)||(validatePhone() === false)||
+        (validatePasswords() === false)) {
          return   console.log('submit not permitted');
         } else {
         console.log('submit permitted');
@@ -157,8 +160,6 @@ const stripped = phone.value.replace(/[\+()\.\-\ ]/gi, '');
     return validation;
 }
 
-
-
 // Creating checkbox for password and checkbox event
 let checkbox2 = document.createElement('input');
 checkbox2.type = "checkbox";
@@ -189,45 +190,53 @@ checkbox2.onchange = function (){
 }
 
 
-//Check if Password equals Repeat Password
-const check = function() {
-    if (password.value === repeatPassword.value) {
-        passwordsNotEqual.style.color = 'green';
-        passwordsNotEqual.innerHTML = 'Passwords Matching';
-    } if(password.value !== repeatPassword.value) {
+//Passwords validation
+function validatePasswords () {
+    const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
+    if (password.value === ''){
+        password.style.borderColor = 'red';
+        invalidPassword.innerHTML = 'Please enter the password';
+        invalidPassword.style.color = 'red';
+        validation = false;
+    } else if(repeatPassword.value === ''){
+        invalidConfirmPassword.innerHTML = 'Please confirm password';
+        invalidConfirmPassword.style.color = 'red';
+        repeatPassword.style.borderColor = 'red';
+        validation = false;
+    } else if(password.value !== repeatPassword.value){
         passwordsNotEqual.style.color = 'red';
         passwordsNotEqual.innerHTML = 'Passwords Not Matching';
-
+        validation = false;
+    } else if(password.value.length < 8) {
+        password.style.borderColor = 'red';
+        tooShortPassword.innerHTML = 'Password must be at least 8 characters';
+        tooShortPassword.style.color = 'red';
+        validation = false;
+    }else if((!passDifficulty.test(password.value))||
+        (!passDifficulty.test(repeatPassword.value))) {
+        validation = false;
+    }else if(password.value === repeatPassword.value){
+        passwordsNotEqual.style.color = 'green';
+        passwordsNotEqual.innerHTML = 'Passwords Matching';
+        validation = true;
+    } else {
+        validation = true;
     }
+    return validation;
 }
-password.addEventListener('keypress', check);
-repeatPassword.addEventListener('keypress', check);
 
-const emptyPassFieldsCheck = function () {
-    if(password.value === '') {
-        invalidPassword.style.color = 'red';
-        invalidPassword.innerHTML = 'Please Fill Up Password Fields';
-
-    }
-}
-submit.addEventListener('click', emptyPassFieldsCheck);
-
-//Password difficulty validation
+//Password difficulty listener
 password.addEventListener('keydown', function () {
-            let validated =  true;
-        if(this.value.length < 8)
-            validated = false;
-        if(!/[^\d][^a-z][^A-Z][^0-9a-zA-Z]/.test(this.value))
-            validated = false;
-        if(validated) {
-            invalidConfirmPassword.innerHTML = 'Strong Password';
-            invalidConfirmPassword.style.color = 'green';
+    const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
+    if(!passDifficulty.test(this.value)){
+        invalidPassword.innerHTML = 'Weak Password';
+        invalidPassword.style.color = 'red';
         }
-        if(!validated) {
-            invalidConfirmPassword.innerHTML = 'Weak Password';
-            invalidConfirmPassword.style.color = 'red';
+    else{
+        invalidPassword.innerHTML = 'Strong Password';
+        invalidPassword.style.color = 'green';
         }
-  });
+});
 
 
 
