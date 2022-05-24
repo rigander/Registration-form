@@ -9,14 +9,14 @@
 <form action="#" name="registration" id="form">
     <h1 title="Registration form">Registration Form</h1>
     <div class="group">
+        <span id="invalidName" class="valid-feedback"></span>
         <label for="name">First Name</label>
         <input minlength="2" placeholder="Enter your first name..." id="name" name="firstName" type="text">
-        <span id="invalidName" class="valid-feedback"></span>
     </div>
     <div class="group">
+        <span id="invalidFName" class="valid-feedback"></span>
         <label for="fName">Last Name</label>
         <input minlength="2"  placeholder="Enter your family name..." id="fName" name="lastName" type="text">
-        <span id="invalidFName" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="dateOfB">Date of birth</label>
@@ -24,13 +24,13 @@
         <span id="invalidDOB" class="valid-feedback"></span>
     </div>
     <div class="group">
+        <span id="invalidGender" class="valid-feedback"></span>
         <label for="radioButton1">Male</label>
         <input  type="radio" name="gender" value="male" id="radioButton1">
         <label for="radioButton2">Female</label>
         <input  type="radio" name="gender" value="female" id="radioButton2">
         <label for="radioButton3">Other</label>
         <input type="radio" name="gender" value="other" id="radioButton3">
-        <span id="invalidGender" class="valid-feedback"></span>
     </div>
     <div class="group">
         <label for="email">E-mail</label>

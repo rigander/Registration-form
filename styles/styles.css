@@ -29,6 +29,18 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
+#invalidName{
+    color: red;
+    position: absolute;
+    display: block;
+    margin: -15px  155px;
+}
+#invalidFName{
+    color: red;
+    position: absolute;
+    display: block;
+    margin: -15px  155px;
+}
 #fName{
     margin-left: 30px;
     height: 25px;
@@ -55,14 +67,14 @@ form{
     color: #416c7e; padding: 0 0.3em;
 }
 #dateOfB::-webkit-datetime-edit-month-field {
-    color: #747475;
+    color: #313336;
 
 }
 #dateOfB::-webkit-datetime-edit-day-field {
-    color: #737375;
+    color: #313336;
 }
 #dateOfB::-webkit-datetime-edit-year-field {
-    color: #727275;
+    color: #313336;
 }
 #dateOfB::-webkit-inner-spin-button {
     display: none;
@@ -72,6 +84,22 @@ form{
     border-radius: 50%;
     border: solid 1px white;
     margin-right: 5px;
+}
+#invalidDOB{
+    color: red;
+    position: absolute;
+    display: block;
+    margin: -50px  155px;
+}
+#invalidGender{
+    color: red;
+    position: absolute;
+    display: block;
+    margin: -15px  65px;
+}
+#invalidPass{
+    position: absolute;
+    margin: 0 120px;
 }
 #email{
     margin-left: 71px;

@@ -1,13 +1,98 @@
+const name = document.getElementById('name');
+const familyName = document.getElementById('fName');
+const invalidFamilyName = document.getElementById('invalidFName');
+const invalidName = document.getElementById('invalidName');
+const dateInput = document.querySelector('#dateOfB');
+const invalidDate = document.getElementById('invalidDOB');
+const male = document.getElementById('radioButton1');
+const female = document.getElementById('radioButton2');
+const other = document.getElementById('radioButton3');
+const invalidGender = document.getElementById('invalidGender');
 const password = document.getElementById('pass1');
 const repeatPassword = document.getElementById('pass2');
 const phone = document.querySelector('#phone');
 const phoneMessage = document.querySelector('#invalidPhone');
 const passwordsNotEqual = document.getElementById('passwordsNotEqual');
-const message2 = document.getElementById('message2');
+const invalidPassword = document.getElementById('invalidPass');
+const invalidConfirmPassword = document.getElementById('invalidRepeatPass');
 const submit = document.querySelector('#submit');
 const checkPass2 = document.querySelector('#checkPass');
 const checkPass = document.querySelector('#password');
-const dateInput = document.querySelector('#dateOfB');
+
+
+
+//Validator
+function elValidate() {
+    if ( (validateName() === false)||(validateFamilyName() === false)||
+        (validateDateOfBirth() === false)||(validateGenderCheck() === false) ) {
+         return   console.log('submit not permitted');
+        } else {
+        console.log('submit permitted');
+        }
+}
+
+// Validate first name
+function validateName() {
+     if (name.value.length <= 2) {
+        name.style.borderColor = 'Red';
+        invalidName.innerHTML = "Fill up your First Name";
+        validation = false;
+    } else {
+        invalidName.innerHTML = 'Looks Good';
+        invalidName.style.color = 'green';
+        name.style.borderColor = 'green';
+        validation = true;
+    }
+     return validation;
+}
+
+// Validate family name
+function validateFamilyName() {
+    if (familyName.value.length <= 2) {
+        familyName.style.borderColor = 'red';
+        invalidFamilyName.style.color = 'red';
+        invalidFamilyName.innerHTML = "Fill up your Family Name";
+        validation = false;
+
+    } else {
+        invalidFamilyName.innerHTML = 'Looks Good';
+        invalidFamilyName.style.color = 'green';
+        familyName.style.borderColor = 'green';
+        validation = true;
+
+    }
+    return validation;
+}
+
+// Validate date of birth
+function validateDateOfBirth() {
+    if (dateInput.value.length < 10) {
+        dateInput.style.borderColor = 'red';
+        invalidDate.style.color = 'red';
+        invalidDate.innerHTML = "Fill up your Date of Birth";
+        validation = false;
+
+    } else {
+        invalidDate.innerHTML = 'Looks Good';
+        invalidDate.style.color = 'green';
+        dateInput.style.borderColor = 'green';
+        validation = true;
+    }
+    return validation;
+}
+
+// Validate gender checkbox
+function validateGenderCheck() {
+    validation = !!((male.checked) || (female.checked) || (other.checked));
+    if (!validation){
+        invalidGender.innerHTML = 'Choose your gender';
+    } else {
+        invalidGender.innerHTML = 'Looks good';
+        invalidGender.style.color = 'green'
+    }
+    return validation;
+}
+
 
 
 // Phone Pattern
@@ -63,10 +148,10 @@ checkbox2.onchange = function (){
 const check = function() {
     if (password.value === repeatPassword.value) {
         passwordsNotEqual.style.color = 'green';
-        passwordsNotEqual.innerHTML = 'Password Matching';
+        passwordsNotEqual.innerHTML = 'Passwords Matching';
     } if(password.value !== repeatPassword.value) {
         passwordsNotEqual.style.color = 'red';
-        passwordsNotEqual.innerHTML = 'Password Not Matching';
+        passwordsNotEqual.innerHTML = 'Passwords Not Matching';
 
     }
 }
@@ -75,8 +160,8 @@ repeatPassword.addEventListener('keypress', check);
 
 const emptyPassFieldsCheck = function () {
     if(password.value === '') {
-        message.style.color = 'red';
-        message.innerHTML = 'Please Fill Up Password Fields';
+        invalidPassword.style.color = 'red';
+        invalidPassword.innerHTML = 'Please Fill Up Password Fields';
 
     }
 }
@@ -87,23 +172,16 @@ password.addEventListener('keydown', function () {
             let validated =  true;
         if(this.value.length < 8)
             validated = false;
-        if(!/\d/.test(this.value))
-            validated = false;
-        if(!/[a-z]/.test(this.value))
-            validated = false;
-        if(!/[A-Z]/.test(this.value))
-            validated = false;
-        if(/[^0-9a-zA-Z]/.test(this.value))
+        if(!/[^\d][^a-z][^A-Z][^0-9a-zA-Z]/.test(this.value))
             validated = false;
         if(validated) {
-            message2.innerHTML = 'Strong Password';
-            message2.style.color = 'green';
+            invalidConfirmPassword.innerHTML = 'Strong Password';
+            invalidConfirmPassword.style.color = 'green';
         }
         if(!validated) {
-            message2.innerHTML = 'Weak Password';
-            message2.style.color = 'red';
+            invalidConfirmPassword.innerHTML = 'Weak Password';
+            invalidConfirmPassword.style.color = 'red';
         }
-
   });
 
 
