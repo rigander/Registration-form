@@ -21,20 +21,30 @@ const submit = document.querySelector('#submit');
 const checkPass2 = document.querySelector('#checkPass');
 const checkPass = document.querySelector('#password');
 const tooShortPassword = document.getElementById('shortPass');
-const tooShortRepeatPassword = document.getElementById('shortRepeatPass');
+const questionnaire = document.getElementById('select');
+const invalidQuestionnaire = document.getElementById('invalidSelect');
+const agreementCheckBox = document.getElementById('agreement');
+const invalidTerms = document.getElementById('invalidTerms');
+
+submit.addEventListener('click', ()=>{
+
+});
 
 
-
-//Validator
+//Main Validator
 function elValidate() {
-    if ( (validateName() === false)||(validateFamilyName() === false)||
+    if ((validateName() === false)||(validateFamilyName() === false)||
         (validateDateOfBirth() === false)||(validateGenderCheck() === false)
         ||(validateEmail() === false)||(validatePhone() === false)||
-        (validatePasswords() === false)) {
-         return   console.log('submit not permitted');
-        } else {
-        console.log('submit permitted');
+        (validatePasswords() === false)||(validateQuestionnaire()=== false)||
+        (validateTermsConditions() === false) ) {
+        permissionGranted = false;
+         console.log('Submit Denied');
+    }else {
+        permissionGranted = true;
+        console.log('Submit Granted');
         }
+    return permissionGranted;
 }
 
 // Validate first name
@@ -226,17 +236,49 @@ function validatePasswords () {
 }
 
 //Password difficulty listener
-password.addEventListener('keydown', function () {
+password.addEventListener('keypress', function () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if(!passDifficulty.test(this.value)){
+    if(!passDifficulty.test(password.value) ) {
         invalidPassword.innerHTML = 'Weak Password';
         invalidPassword.style.color = 'red';
-        }
-    else{
+    }if(passDifficulty.test(password.value) ){
         invalidPassword.innerHTML = 'Strong Password';
         invalidPassword.style.color = 'green';
-        }
+    }if(password.value !== repeatPassword.value) {
+        passwordsNotEqual.style.color = 'red';
+        passwordsNotEqual.innerHTML = 'Passwords Not Matching';
+    }if(password.value === repeatPassword.value) {
+        passwordsNotEqual.style.color = 'green';
+        passwordsNotEqual.innerHTML = 'Passwords Matching';
+    }
 });
+
+//Validate questionnaire
+function validateQuestionnaire () {
+    if(questionnaire.value === 'null'){
+        invalidQuestionnaire.innerHTML = 'Please choose one';
+        invalidQuestionnaire.style.color = 'red';
+        validation = false;
+    } else if(questionnaire.value !== 'null'){
+        invalidQuestionnaire.innerHTML = 'Looks Good';
+        invalidQuestionnaire.style.color = 'green';
+        validation = true;
+    } return validation;
+}
+
+//Validate terms & conditions
+function validateTermsConditions () {
+    if(agreementCheckBox.checked){
+        invalidTerms.innerHTML = 'Looks Good';
+        invalidTerms.style.color = 'green';
+        validation = true;
+    } else {
+        invalidTerms.innerHTML = 'Please read and click checked if agree';
+        validation = false;
+    } return validation;
+}
+
+
 
 
 

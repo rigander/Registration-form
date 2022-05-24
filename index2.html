@@ -60,8 +60,9 @@
     <div class="group" >
         <label for="select">How did you find us?</label>
         <select  id="select" name="How-did-you-find-us">
+            <option value="null" selected>Choose from below...</option>
             <option value="Through a friend">Through a friend</option>
-            <option value="Google" selected>Google</option>
+            <option value="Google">Google</option>
             <option value="Social media">Social media</option>
             <option value="Indeed">Indeed</option>
             <option value="LinkedIn">LinkedIn</option>
@@ -72,6 +73,7 @@
         <span id="invalidSelect" class="valid-feedback"></span>
     </div>
     <div id="agreements" class="group">
+        <span id="invalidTerms" class="valid-feedback"></span>
         <input name="checkTerms"  id="agreement" type="checkbox"/>
         I agree to the<a href="terms.html" id="terms">terms &amp; conditions</a>
     </div>

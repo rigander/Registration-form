@@ -243,3 +243,14 @@ label.error{
     margin-left: 160px;
 
 }
+#invalidSelect{
+    position: absolute;
+    display: block;
+    margin: 0;
+}
+#invalidTerms{
+    position: absolute;
+    display: block;
+    margin:-12px 5px ;
+    color: red;
+}
