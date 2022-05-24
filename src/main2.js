@@ -8,6 +8,8 @@ const male = document.getElementById('radioButton1');
 const female = document.getElementById('radioButton2');
 const other = document.getElementById('radioButton3');
 const invalidGender = document.getElementById('invalidGender');
+const email = document.getElementById('email');
+const invalidEmail = document.getElementById('invalidEmail');
 const password = document.getElementById('pass1');
 const repeatPassword = document.getElementById('pass2');
 const phone = document.querySelector('#phone');
@@ -24,7 +26,8 @@ const checkPass = document.querySelector('#password');
 //Validator
 function elValidate() {
     if ( (validateName() === false)||(validateFamilyName() === false)||
-        (validateDateOfBirth() === false)||(validateGenderCheck() === false) ) {
+        (validateDateOfBirth() === false)||(validateGenderCheck() === false)
+        ||(validateEmail() === false) ) {
          return   console.log('submit not permitted');
         } else {
         console.log('submit permitted');
@@ -89,6 +92,40 @@ function validateGenderCheck() {
     } else {
         invalidGender.innerHTML = 'Looks good';
         invalidGender.style.color = 'green'
+    }
+    return validation;
+}
+
+//Validate e-mail
+
+function trim(s) {
+    return s.replace(/^\s+|\s+$/, ''); // removes whitespace
+}
+function validateEmail() {
+    let trimEmail = trim(email.value);
+    const emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
+    const illegalChars = /[()<>,;:\\"\[\]]/;
+
+    if (email.value === '') {
+        email.style.borderColor = 'red';
+        invalidEmail.style.color = 'red';
+        invalidEmail.innerHTML = 'Please enter an email address';
+        validation = false;
+    } else if(!emailFilter.test(trimEmail)) {
+        email.style.borderColor = 'red';
+        invalidEmail.style.color = 'red';
+        invalidEmail.innerHTML = 'Please enter a valid email';
+        validation = false;
+    } else if (email.value.match(illegalChars)) {
+        email.style.borderColor = 'red';
+        invalidEmail.style.color = 'red';
+        invalidEmail.innerHTML = 'Email contains invalid characters';
+        validation = false;
+    } else {
+        email.style.borderColor = 'green';
+        invalidEmail.style.color = 'green';
+        invalidEmail.innerHTML = 'Looks Good';
+        validation = true;
     }
     return validation;
 }

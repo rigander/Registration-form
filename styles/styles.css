@@ -109,6 +109,12 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
+#invalidEmail{
+    color: red;
+    position: absolute;
+    display: block;
+    margin: -15px  155px;
+}
 #phone{
     margin-left: 76px;
     height: 25px;
