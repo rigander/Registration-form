@@ -26,6 +26,7 @@ const invalidQuestionnaire = document.getElementById('invalidSelect');
 const agreementCheckBox = document.getElementById('agreement');
 const invalidTerms = document.getElementById('invalidTerms');
 
+//Submit data (AJAX Post)
 submit.addEventListener('click', (event)=>{
     event.preventDefault();
         if (elValidate() === true) {
