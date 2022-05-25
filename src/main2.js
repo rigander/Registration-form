@@ -26,9 +26,28 @@ const invalidQuestionnaire = document.getElementById('invalidSelect');
 const agreementCheckBox = document.getElementById('agreement');
 const invalidTerms = document.getElementById('invalidTerms');
 
-submit.addEventListener('click', ()=>{
+submit.addEventListener('click', (event)=>{
+    event.preventDefault();
+        if (elValidate() === true) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", 'http://registration.form/php/request.php', true);
 
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                    console.log(JSON.parse(this.response));
+                }
+            }
+            xhr.send(dataCollector());
+        } else console.log('Post not permitted');
 });
+
+function dataCollector () {
+  const Collector = `firstName=${name.value}&lastName=${familyName.value}&DateOfBirth=${dateInput.value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${email.value}&Phone=${phone.value}&Password=${password.value}&ConfirmPassword=${repeatPassword.value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
+  return Collector;
+}
+
 
 
 //Main Validator
