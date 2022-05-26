@@ -230,9 +230,12 @@ i{
     margin-left: 21%;
 }
 #invalidRepeatPass{
-    position: absolute;
     display: block;
-    margin-top: 28px;
+    margin-top: 14px;
+}
+#invalidPass{
+    display: block;
+    margin-left: 197px;
 }
 label.error{}
 label.error{
@@ -264,5 +267,9 @@ label.error{
     display: block;
     margin-top: -50px;
 
-
+}
+#shortPass{
+    position: absolute;
+    display: block;
+    margin-top: -20px;
 }

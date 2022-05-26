@@ -25,7 +25,7 @@ submit.addEventListener('click', (event)=>{
 });
 
 function dataCollector () {
-  const Collector = `firstName=${input[0].value}&lastName=${input[1].value}&DateOfBirth=${input[2].value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${input[6].value}&Phone=${input[7].value}&Password=${input[8].value}&ConfirmPassword=${input[9].value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
+  const Collector = `firstName=${input[0].value}&lastName=${input[1].value}&DateOfBirth=${input[2].value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${input[6].value}&Phone=${input[7].value}&Password=${input[8].value}&ConfirmPassword=${input[10].value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
   return Collector;
 }
 
