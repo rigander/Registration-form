@@ -1,30 +1,10 @@
 const name = document.getElementById('name');
-const familyName = document.getElementById('fName');
-const invalidFamilyName = document.getElementById('invalidFName');
-const invalidName = document.getElementById('invalidName');
-const dateInput = document.querySelector('#dateOfB');
-const invalidDate = document.getElementById('invalidDOB');
-const male = document.getElementById('radioButton1');
-const female = document.getElementById('radioButton2');
-const other = document.getElementById('radioButton3');
-const invalidGender = document.getElementById('invalidGender');
-const email = document.getElementById('email');
-const invalidEmail = document.getElementById('invalidEmail');
 const password = document.getElementById('pass1');
-const repeatPassword = document.getElementById('pass2');
-const phone = document.querySelector('#phone');
-const invalidPhoneMessage = document.querySelector('#invalidPhone');
-const passwordsNotEqual = document.getElementById('passwordsNotEqual');
-const invalidPassword = document.getElementById('invalidPass');
-const invalidConfirmPassword = document.getElementById('invalidRepeatPass');
 const submit = document.querySelector('#submit');
-const checkPass2 = document.querySelector('#checkPass');
-const checkPass = document.querySelector('#password');
-const tooShortPassword = document.getElementById('shortPass');
 const questionnaire = document.getElementById('select');
-const invalidQuestionnaire = document.getElementById('invalidSelect');
-const agreementCheckBox = document.getElementById('agreement');
-const invalidTerms = document.getElementById('invalidTerms');
+const errorMessage = document.querySelectorAll('.valid-feedback');
+const input = document.querySelectorAll('input');
+
 
 //Submit data (AJAX Post)
 submit.addEventListener('click', (event)=>{
@@ -45,11 +25,9 @@ submit.addEventListener('click', (event)=>{
 });
 
 function dataCollector () {
-  const Collector = `firstName=${name.value}&lastName=${familyName.value}&DateOfBirth=${dateInput.value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${email.value}&Phone=${phone.value}&Password=${password.value}&ConfirmPassword=${repeatPassword.value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
+  const Collector = `firstName=${input[0].value}&lastName=${input[1].value}&DateOfBirth=${input[2].value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${input[6].value}&Phone=${input[7].value}&Password=${input[8].value}&ConfirmPassword=${input[9].value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
   return Collector;
 }
-
-
 
 //Main Validator
 function elValidate() {
@@ -69,14 +47,14 @@ function elValidate() {
 
 // Validate first name
 function validateName() {
-     if (name.value.length <= 2) {
-        name.style.borderColor = 'Red';
-        invalidName.innerHTML = "Fill up your First Name";
+     if (input[0].value.length <= 2) {
+         input[0].style.borderColor = 'Red';
+        errorMessage[0].innerHTML = "Fill up your Given Name";
         validation = false;
     } else {
-        invalidName.innerHTML = 'Looks Good';
-        invalidName.style.color = 'green';
-        name.style.borderColor = 'green';
+        errorMessage[0].innerHTML = 'Looks Good';
+        errorMessage[0].style.color = 'green';
+         input[0].style.borderColor = 'green';
         validation = true;
     }
      return validation;
@@ -84,16 +62,16 @@ function validateName() {
 
 // Validate family name
 function validateFamilyName() {
-    if (familyName.value.length <= 2) {
-        familyName.style.borderColor = 'red';
-        invalidFamilyName.style.color = 'red';
-        invalidFamilyName.innerHTML = "Fill up your Family Name";
+    if (input[1].value.length <= 2) {
+        input[1].style.borderColor = 'red';
+        errorMessage[1].style.color = 'red';
+        errorMessage[1].innerHTML = "Fill up your Family Name";
         validation = false;
 
     } else {
-        invalidFamilyName.innerHTML = 'Looks Good';
-        invalidFamilyName.style.color = 'green';
-        familyName.style.borderColor = 'green';
+        errorMessage[1].innerHTML = 'Looks Good';
+        errorMessage[1].style.color = 'green';
+        input[1].style.borderColor = 'green';
         validation = true;
 
     }
@@ -102,16 +80,16 @@ function validateFamilyName() {
 
 // Validate date of birth
 function validateDateOfBirth() {
-    if (dateInput.value.length < 10) {
-        dateInput.style.borderColor = 'red';
-        invalidDate.style.color = 'red';
-        invalidDate.innerHTML = "Fill up your Date of Birth";
+    if (input[2].value.length < 10) {
+        input[2].style.borderColor = 'red';
+        errorMessage[2].style.color = 'red';
+        errorMessage[2].innerHTML = "Fill up your Date of Birth";
         validation = false;
 
     } else {
-        invalidDate.innerHTML = 'Looks Good';
-        invalidDate.style.color = 'green';
-        dateInput.style.borderColor = 'green';
+        errorMessage[2].innerHTML = 'Looks Good';
+        errorMessage[2].style.color = 'green';
+        input[2].style.borderColor = 'green';
         validation = true;
     }
     return validation;
@@ -119,12 +97,12 @@ function validateDateOfBirth() {
 
 // Validate gender checkbox
 function validateGenderCheck() {
-    validation = !!((male.checked) || (female.checked) || (other.checked));
+    validation = !!((input[3].checked) || (input[4].checked) || (input[5].checked));
     if (!validation){
-        invalidGender.innerHTML = 'Choose your gender';
+        errorMessage[3].innerHTML = 'Choose your gender';
     } else {
-        invalidGender.innerHTML = 'Looks good';
-        invalidGender.style.color = 'green'
+        errorMessage[3].innerHTML = 'Looks Good';
+        errorMessage[3].style.color = 'green'
     }
     return validation;
 }
@@ -134,29 +112,29 @@ function trim(s) {
     return s.replace(/^\s+|\s+$/, ''); // removes whitespace
 }
 function validateEmail() {
-    let trimEmail = trim(email.value);
+    let trimEmail = trim(input[6].value);
     const emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
     const illegalChars = /[()<>,;:\\"\[\]]/;
 
-    if (email.value === '') {
-        email.style.borderColor = 'red';
-        invalidEmail.style.color = 'red';
-        invalidEmail.innerHTML = 'Please enter an email address';
+    if (input[6].value === '') {
+        input[6].style.borderColor = 'red';
+        errorMessage[4].style.color = 'red';
+        errorMessage[4].innerHTML = 'Please enter an email address';
         validation = false;
     } else if(!emailFilter.test(trimEmail)) {
-        email.style.borderColor = 'red';
-        invalidEmail.style.color = 'red';
-        invalidEmail.innerHTML = 'Please enter a valid email';
+        input[6].style.borderColor = 'red';
+        errorMessage[4].style.color = 'red';
+        errorMessage[4].innerHTML = 'Please enter a valid email';
         validation = false;
-    } else if (email.value.match(illegalChars)) {
-        email.style.borderColor = 'red';
-        invalidEmail.style.color = 'red';
-        invalidEmail.innerHTML = 'Email contains invalid characters';
+    } else if (input[6].value.match(illegalChars)) {
+        input[6].style.borderColor = 'red';
+        errorMessage[4].style.color = 'red';
+        errorMessage[4].innerHTML = 'Email contains invalid characters';
         validation = false;
     } else {
-        email.style.borderColor = 'green';
-        invalidEmail.style.color = 'green';
-        invalidEmail.innerHTML = 'Looks Good';
+        input[6].style.borderColor = 'green';
+        errorMessage[4].style.color = 'green';
+        errorMessage[4].innerHTML = 'Looks Good';
         validation = true;
     }
     return validation;
@@ -165,57 +143,44 @@ function validateEmail() {
 // Phone Pattern
 function validatePhone(){
 const illegalChars = /[^\d]/;
-const stripped = phone.value.replace(/[\+()\.\-\ ]/gi, '');
-    if(phone.value === '') {
-        invalidPhoneMessage.innerHTML = 'Please enter a phone number';
-        invalidPhoneMessage.style.color = 'red';
-        phone.style.borderColor = 'red';
+const stripped = input[7].value.replace(/[\+()\.\-\ ]/gi, '');
+    if(input[7].value === '') {
+        errorMessage[5].innerHTML = 'Please enter a phone number';
+        errorMessage[5].style.color = 'red';
+        input[7].style.borderColor = 'red';
         validation = false;
     } else if (illegalChars.test(stripped)) {
-        invalidPhoneMessage.innerHTML = 'Phone number contain illegal characters';
-        invalidPhoneMessage.style.color = 'red';
-        phone.style.borderColor = 'red';
+        errorMessage[5].innerHTML = 'Phone number contain illegal characters';
+        errorMessage[5].style.color = 'red';
+        input[7].style.borderColor = 'red';
         validation = false;
     } else if (stripped.length<10) {
-        invalidPhoneMessage.innerHTML = 'The phone number is too short'
-        invalidPhoneMessage.style.color = 'red';
-        phone.style.borderColor = 'red';
+        errorMessage[5].innerHTML = 'The phone number is too short'
+        errorMessage[5].style.color = 'red';
+        input[7].style.borderColor = 'red';
         validation = false;
     } else {
-        invalidPhoneMessage.innerHTML = 'Looks Good'
-        invalidPhoneMessage.style.color = 'green';
-        phone.style.borderColor = 'green';
+        errorMessage[5].innerHTML = 'Looks Good'
+        errorMessage[5].style.color = 'green';
+        input[7].style.borderColor = 'green';
         validation = true;
     }
     return validation;
 }
 
-// Creating checkbox for password and checkbox event
-let checkbox2 = document.createElement('input');
-checkbox2.type = "checkbox";
-checkbox2.name = "name2";
-checkbox2.value = "value";
-checkbox2.id = "id";
-let checkbox = document.createElement('input');
-checkbox.type = "checkbox";
-checkbox.name = "name";
-checkbox.value = "value";
-checkbox.id = "id2";
-checkPass2.appendChild(checkbox2);
-checkPass.appendChild(checkbox);
-
-checkbox.onchange = function (){
-    if (checkbox.checked) {
-        password.type = 'text';
+// Checkbox event
+input[9].onchange = function (){
+    if (input[9].checked) {
+        input[8].type = 'text';
     } else {
-        password.type = 'password';
+        input[8].type = 'password';
     }
 };
-checkbox2.onchange = function (){
-    if (checkbox2.checked) {
-        repeatPassword.type = 'text';
+input[11].onchange = function (){
+    if (input[11].checked) {
+        input[10].type = 'text';
     } else {
-        repeatPassword.type = 'password';
+        input[10].type = 'password';
     }
 }
 
@@ -223,77 +188,73 @@ checkbox2.onchange = function (){
 //Passwords validation
 function validatePasswords () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if (password.value === ''){
-        password.style.borderColor = 'red';
-        invalidPassword.innerHTML = 'Please enter the password';
-        invalidPassword.style.color = 'red';
+    if (input[8].value === ''){
+        input[8].style.borderColor = 'red';
+        errorMessage[7].innerHTML = 'Please enter the password';
+        errorMessage[7].style.color = 'red';
         validation = false;
-    } else if(repeatPassword.value === ''){
-        invalidConfirmPassword.innerHTML = 'Please confirm password';
-        invalidConfirmPassword.style.color = 'red';
-        repeatPassword.style.borderColor = 'red';
+    } else if(input[10].value === ''){
+        errorMessage[8].innerHTML = 'Please confirm password';
+        errorMessage[8].style.color = 'red';
+        input[10].style.borderColor = 'red';
         validation = false;
-    } else if(password.value !== repeatPassword.value){
-        passwordsNotEqual.style.color = 'red';
-        passwordsNotEqual.innerHTML = 'Passwords Not Matching';
+    } else if(input[8].value !== input[9].value){
+        errorMessage[10].style.color = 'red';
+        errorMessage[10].innerHTML = 'Passwords Not Matching';
         validation = false;
-    } else if(password.value.length < 8) {
-        password.style.borderColor = 'red';
-        tooShortPassword.innerHTML = 'Password must be at least 8 characters';
-        tooShortPassword.style.color = 'red';
+    } else if(input[8].value.length < 8) {
+        input[8].style.borderColor = 'red';
+        errorMessage[6].innerHTML = 'Password must be at least 8 characters';
+        errorMessage[6].style.color = 'red';
         validation = false;
-    }else if((!passDifficulty.test(password.value))||
-        (!passDifficulty.test(repeatPassword.value))) {
+    }else if((!passDifficulty.test(input[8].value))||
+        (!passDifficulty.test(input[10].value))) {
         validation = false;
-    }else if(password.value === repeatPassword.value){
-        passwordsNotEqual.style.color = 'green';
-        passwordsNotEqual.innerHTML = 'Passwords Matching';
-        validation = true;
-    } else {
+    }else {
         validation = true;
     }
     return validation;
 }
 
 //Password difficulty listener
-password.addEventListener('keypress', function () {
+input[8].addEventListener('keypress', function () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if(!passDifficulty.test(password.value) ) {
-        invalidPassword.innerHTML = 'Weak Password';
-        invalidPassword.style.color = 'red';
-    }if(passDifficulty.test(password.value) ){
-        invalidPassword.innerHTML = 'Strong Password';
-        invalidPassword.style.color = 'green';
-    }if(password.value !== repeatPassword.value) {
-        passwordsNotEqual.style.color = 'red';
-        passwordsNotEqual.innerHTML = 'Passwords Not Matching';
-    }if(password.value === repeatPassword.value) {
-        passwordsNotEqual.style.color = 'green';
-        passwordsNotEqual.innerHTML = 'Passwords Matching';
+    if(!passDifficulty.test(input[8].value) ) {
+        errorMessage[7].innerHTML = 'Weak Password';
+        errorMessage[7].style.color = 'red';
+    }if(passDifficulty.test(input[8].value) ){
+        errorMessage[7].innerHTML = 'Strong Password';
+        errorMessage[7].style.color = 'green';
+    }if(input[8].value !== input[10].value) {
+        errorMessage[10].style.color = 'red';
+        errorMessage[10].innerHTML = 'Passwords Not Matching';
+    }if(input[8].value === input[10].value) {
+        errorMessage[10].style.color = 'green';
+        errorMessage[10].innerHTML = 'Passwords Matching';
     }
 });
 
 //Validate questionnaire
 function validateQuestionnaire () {
     if(questionnaire.value === 'null'){
-        invalidQuestionnaire.innerHTML = 'Please choose one';
-        invalidQuestionnaire.style.color = 'red';
+        errorMessage[11].innerHTML = 'Please choose one';
+        errorMessage[11].style.color = 'red';
         validation = false;
     } else if(questionnaire.value !== 'null'){
-        invalidQuestionnaire.innerHTML = 'Looks Good';
-        invalidQuestionnaire.style.color = 'green';
+        errorMessage[11].innerHTML = 'Looks Good';
+        errorMessage[11].style.color = 'green';
         validation = true;
     } return validation;
 }
 
 //Validate terms & conditions
 function validateTermsConditions () {
-    if(agreementCheckBox.checked){
-        invalidTerms.innerHTML = 'Looks Good';
-        invalidTerms.style.color = 'green';
+    if(input[10].checked){
+        errorMessage[12].innerHTML = 'Looks Good';
+        errorMessage[12].style.color = 'green';
         validation = true;
     } else {
-        invalidTerms.innerHTML = 'Please read and click checked if agree';
+        errorMessage[12].innerHTML = 'Please read and click checked if agree';
         validation = false;
     } return validation;
 }
