@@ -45,16 +45,21 @@ function elValidate() {
     return permissionGranted;
 }
 
+// Error Message
+function message(i,x,color, message, status ){
+    input[i].style.borderColor = color;
+    errorMessage[x].style.color = 'red';
+    errorMessage[x].innerHTML = message;
+    validation = status;
+}
+
 // Validate first name
 function validateName() {
      if (input[0].value.length <= 2) {
-         input[0].style.borderColor = 'Red';
-        errorMessage[0].innerHTML = "Fill up your Given Name";
-        validation = false;
+         message(0,0, 'red', 'Fill up your Given Name', false);
     } else {
-        errorMessage[0].innerHTML = 'Looks Good';
+         message(0,0,'green', 'Looks Good', true);
         errorMessage[0].style.color = 'green';
-         input[0].style.borderColor = 'green';
         validation = true;
     }
      return validation;
@@ -63,17 +68,10 @@ function validateName() {
 // Validate family name
 function validateFamilyName() {
     if (input[1].value.length <= 2) {
-        input[1].style.borderColor = 'red';
-        errorMessage[1].style.color = 'red';
-        errorMessage[1].innerHTML = "Fill up your Family Name";
-        validation = false;
-
+        message(1,1,'red', 'Fill up your Family Name', false);
     } else {
-        errorMessage[1].innerHTML = 'Looks Good';
+        message(1, 1, 'green','Looks Good', true);
         errorMessage[1].style.color = 'green';
-        input[1].style.borderColor = 'green';
-        validation = true;
-
     }
     return validation;
 }
@@ -81,16 +79,10 @@ function validateFamilyName() {
 // Validate date of birth
 function validateDateOfBirth() {
     if (input[2].value.length < 10) {
-        input[2].style.borderColor = 'red';
-        errorMessage[2].style.color = 'red';
-        errorMessage[2].innerHTML = "Fill up your Date of Birth";
-        validation = false;
-
+        message(2,2, 'red', 'Fill up your Date of Birth', false);
     } else {
-        errorMessage[2].innerHTML = 'Looks Good';
+        message(2, 2, 'green', 'Looks Good', true);
         errorMessage[2].style.color = 'green';
-        input[2].style.borderColor = 'green';
-        validation = true;
     }
     return validation;
 }
@@ -111,31 +103,20 @@ function validateGenderCheck() {
 function trim(s) {
     return s.replace(/^\s+|\s+$/, ''); // removes whitespace
 }
+
 function validateEmail() {
     let trimEmail = trim(input[6].value);
     const emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
     const illegalChars = /[()<>,;:\\"\[\]]/;
-
     if (input[6].value === '') {
-        input[6].style.borderColor = 'red';
-        errorMessage[4].style.color = 'red';
-        errorMessage[4].innerHTML = 'Please enter an email address';
-        validation = false;
+        message(6, 4,'red', 'Please enter an email address!', false);
     } else if(!emailFilter.test(trimEmail)) {
-        input[6].style.borderColor = 'red';
-        errorMessage[4].style.color = 'red';
-        errorMessage[4].innerHTML = 'Please enter a valid email';
-        validation = false;
+        message(6,4,'red', 'Please enter a valid email', false);
     } else if (input[6].value.match(illegalChars)) {
-        input[6].style.borderColor = 'red';
-        errorMessage[4].style.color = 'red';
-        errorMessage[4].innerHTML = 'Email contains invalid characters';
-        validation = false;
+        message(6,4,'red', 'Email contains invalid characters', false);
     } else {
-        input[6].style.borderColor = 'green';
+        message(6,4,'green', 'Looks Good', true);
         errorMessage[4].style.color = 'green';
-        errorMessage[4].innerHTML = 'Looks Good';
-        validation = true;
     }
     return validation;
 }
@@ -145,25 +126,14 @@ function validatePhone(){
 const illegalChars = /[^\d]/;
 const stripped = input[7].value.replace(/[\+()\.\-\ ]/gi, '');
     if(input[7].value === '') {
-        errorMessage[5].innerHTML = 'Please enter a phone number';
-        errorMessage[5].style.color = 'red';
-        input[7].style.borderColor = 'red';
-        validation = false;
+        message(7,5,'red','Please enter a phone number', false );
     } else if (illegalChars.test(stripped)) {
-        errorMessage[5].innerHTML = 'Phone number contain illegal characters';
-        errorMessage[5].style.color = 'red';
-        input[7].style.borderColor = 'red';
-        validation = false;
+        message(7,5, 'red', 'Phone number contain illegal characters', false);
     } else if (stripped.length<10) {
-        errorMessage[5].innerHTML = 'The phone number is too short'
-        errorMessage[5].style.color = 'red';
-        input[7].style.borderColor = 'red';
-        validation = false;
+        message(7, 5, 'red', 'Phone number is too short', false);
     } else {
-        errorMessage[5].innerHTML = 'Looks Good'
+        message(7, 5, 'green', 'Looks Good', true);
         errorMessage[5].style.color = 'green';
-        input[7].style.borderColor = 'green';
-        validation = true;
     }
     return validation;
 }
@@ -184,77 +154,60 @@ input[11].onchange = function (){
     }
 }
 
-
 //Passwords validation
 function validatePasswords () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
     if (input[8].value === ''){
-        input[8].style.borderColor = 'red';
-        errorMessage[7].innerHTML = 'Please enter the password';
-        errorMessage[7].style.color = 'red';
-        validation = false;
+        message(8, 7, 'red', 'Please enter the password', false);
     } else if(input[10].value === ''){
-        errorMessage[8].innerHTML = 'Please confirm password';
-        errorMessage[8].style.color = 'red';
-        input[10].style.borderColor = 'red';
-        validation = false;
-    } else if(input[8].value !== input[9].value){
-        errorMessage[10].style.color = 'red';
-        errorMessage[10].innerHTML = 'Passwords Not Matching';
-        validation = false;
+        message(10, 8, 'red', 'Please confirm password', false);
+    } else if(input[8].value !== input[10].value){
+        message(8, 10, 'red', 'Passwords Not Matching', false);
     } else if(input[8].value.length < 8) {
-        input[8].style.borderColor = 'red';
-        errorMessage[6].innerHTML = 'Password must be at least 8 characters';
-        errorMessage[6].style.color = 'red';
-        validation = false;
-    }else if((!passDifficulty.test(input[8].value))||
-        (!passDifficulty.test(input[10].value))) {
-        validation = false;
-    }else {
-        validation = true;
-    }
+        message(8, 6, 'red', 'Password must be at least 8 characters', false);
+    }else validation = !((!passDifficulty.test(input[8].value)) ||
+        (!passDifficulty.test(input[10].value)));
     return validation;
+}
+
+// Error Message 2
+function message2(x,color, message ){
+    errorMessage[x].style.color = color;
+    errorMessage[x].innerHTML = message;
 }
 
 //Password difficulty listener
 input[8].addEventListener('keypress', function () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
     if(!passDifficulty.test(input[8].value) ) {
-        errorMessage[7].innerHTML = 'Weak Password';
-        errorMessage[7].style.color = 'red';
+        message2(7, 'red', 'Weak Password');
     }if(passDifficulty.test(input[8].value) ){
-        errorMessage[7].innerHTML = 'Strong Password';
-        errorMessage[7].style.color = 'green';
+        message2(7, 'green', 'Strong Password');
     }if(input[8].value !== input[10].value) {
-        errorMessage[10].style.color = 'red';
-        errorMessage[10].innerHTML = 'Passwords Not Matching';
+        message2(10, 'red', 'Password not Matching ');
     }if(input[8].value === input[10].value) {
-        errorMessage[10].style.color = 'green';
-        errorMessage[10].innerHTML = 'Passwords Matching';
+        message2(10, 'green', 'Password Matching');
     }
 });
 
 //Validate questionnaire
 function validateQuestionnaire () {
     if(questionnaire.value === 'null'){
-        errorMessage[11].innerHTML = 'Please choose one';
-        errorMessage[11].style.color = 'red';
+        message2(11, 'red', 'Please choose one')
         validation = false;
     } else if(questionnaire.value !== 'null'){
-        errorMessage[11].innerHTML = 'Looks Good';
-        errorMessage[11].style.color = 'green';
+        message2(11, 'green', 'Looks Good')
         validation = true;
     } return validation;
 }
 
 //Validate terms & conditions
 function validateTermsConditions () {
-    if(input[10].checked){
-        errorMessage[12].innerHTML = 'Looks Good';
-        errorMessage[12].style.color = 'green';
+    if(input[12].checked){
+        message2(12, 'green', 'Looks Good')
         validation = true;
     } else {
-        errorMessage[12].innerHTML = 'Please read and click checked if agree';
+        message2(12, 'red', 'Please read and click if agree')
         validation = false;
     } return validation;
 }
