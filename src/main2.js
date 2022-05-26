@@ -7,9 +7,32 @@ const input = document.querySelectorAll('input');
 
 
 //Submit data (AJAX Post)
+
+
+// submit.addEventListener('click', (event) =>{
+//     event.preventDefault();
+//     const Form = document.getElementById('form');
+//     const formData = new FormData(Form);
+//     const request = new XMLHttpRequest();
+//     request.open('POST', 'process.php');
+//     request.addEventListener('readystatechange', function() {
+//         if(this.readyState == 4 && this.status == 200) {
+//             let data = JSON.parse(this.reponseText);
+//             console.log(data);
+//         } else console.log('Post not Permitted');
+//     }
+//     );
+//     request.send(formData);
+// })
+
+
+
+
 submit.addEventListener('click', (event)=>{
     event.preventDefault();
         if (elValidate() === true) {
+            const Form = document.getElementById('form');
+            const formData = new FormData(Form);
             const xhr = new XMLHttpRequest();
             xhr.open("POST", 'http://registration.form/php/request.php', true);
 
@@ -20,14 +43,15 @@ submit.addEventListener('click', (event)=>{
                     console.log(JSON.parse(this.response));
                 }
             }
-            xhr.send(dataCollector());
+            xhr.send(formData);
         } else console.log('Post not permitted');
 });
 
-function dataCollector () {
-  const Collector = `firstName=${input[0].value}&lastName=${input[1].value}&DateOfBirth=${input[2].value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${input[6].value}&Phone=${input[7].value}&Password=${input[8].value}&ConfirmPassword=${input[10].value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
-  return Collector;
-}
+// Data collection via simple string.
+// function dataCollector () {
+//   const Collector = `firstName=${input[0].value}&lastName=${input[1].value}&DateOfBirth=${input[2].value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${input[6].value}&Phone=${input[7].value}&Password=${input[8].value}&ConfirmPassword=${input[10].value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
+//   return Collector;
+// }
 
 //Main Validator
 function elValidate() {
