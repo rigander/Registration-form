@@ -43,4 +43,4 @@ if ((isset($_POST['firstName'])) && (!empty($_POST["firstName"]))) {
 }
 
 echo json_encode($result);
-?>
+
