@@ -6,7 +6,7 @@ const errorMessage = document.querySelectorAll('.valid-feedback');
 const input = document.querySelectorAll('input');
 
 
-//Submit data (AJAX Post)
+//Submit Data (AJAX Post)
 
 
 // submit.addEventListener('click', (event) =>{
