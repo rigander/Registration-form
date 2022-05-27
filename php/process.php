@@ -15,7 +15,7 @@ if ((isset($_POST['firstName'])) && (!empty($_POST["firstName"]))) {
 }if ((isset($_POST['gender']))&& (!empty($_POST["gender"]))) {
     $result['gender'] = $_POST['gender'];
 } else {
-    $result['dateOfBirth'] = 'Please enter your Gender!';
+    $result['gender'] = 'Please enter your Gender!';
 }if ((isset($_POST['Email']))&& (!empty($_POST["Email"]))) {
     $result['Email'] = $_POST['Email'];
 } else {
@@ -28,6 +28,10 @@ if ((isset($_POST['firstName'])) && (!empty($_POST["firstName"]))) {
     $result['Password'] = $_POST['Password'];
 } else {
     $result['Password'] = 'Please enter password!';
+}if ((isset($_POST['confirmPassword']))&& (!empty($_POST["confirmPassword"]))) {
+    $result['confirmPassword'] = $_POST['confirmPassword'];
+} else {
+    $result['confirmPassword'] = 'Please enter confirm password field!';
 }if ((isset($_POST['How-did-you-find-us']))&& (!empty($_POST["How-did-you-find-us"]))) {
     $result['How-did-you-find-us'] = $_POST['How-did-you-find-us'];
 } else {
@@ -38,6 +42,5 @@ if ((isset($_POST['firstName'])) && (!empty($_POST["firstName"]))) {
     $result['checkTerms'] = 'Please click checked if read and agree with Terms and Conditions!';
 }
 
-header('Content-Type: application/json; charset=utf-8');
 echo json_encode($result);
 ?>

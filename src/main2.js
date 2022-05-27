@@ -34,10 +34,7 @@ submit.addEventListener('click', (event)=>{
             const Form = document.getElementById('form');
             const formData = new FormData(Form);
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", 'http://registration.form/php/request.php', true);
-
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
+            xhr.open("POST", 'http://registration.form/php/process.php', true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
                     console.log(JSON.parse(this.response));
