@@ -1,4 +1,3 @@
-const name = document.getElementById('name');
 const password = document.getElementById('pass1');
 const submit = document.querySelector('#submit');
 const questionnaire = document.getElementById('select');
@@ -76,7 +75,8 @@ function message(i,x,color, message, status ){
 
 // Validate first name
 function validateName() {
-     if (input[0].value.length <= 2) {
+    const name = input[0];
+     if (name.value.length <= 2) {
          message(0,0, 'red', 'Fill up your Given Name', false);
     } else {
          message(0,0,'green', 'Looks Good', true);
@@ -88,7 +88,8 @@ function validateName() {
 
 // Validate family name
 function validateFamilyName() {
-    if (input[1].value.length <= 2) {
+    const familyName = input[1];
+    if (familyName.value.length <= 2) {
         message(1,1,'red', 'Fill up your Family Name', false);
     } else {
         message(1, 1, 'green','Looks Good', true);
@@ -99,7 +100,8 @@ function validateFamilyName() {
 
 // Validate date of birth
 function validateDateOfBirth() {
-    if (input[2].value.length < 10) {
+    const DateOfBirth = input[2];
+    if (DateOfBirth.value.length < 10) {
         message(2,2, 'red', 'Fill up your Date of Birth', false);
     } else {
         message(2, 2, 'green', 'Looks Good', true);
@@ -110,7 +112,10 @@ function validateDateOfBirth() {
 
 // Validate gender checkbox
 function validateGenderCheck() {
-    validation = !!((input[3].checked) || (input[4].checked) || (input[5].checked));
+    const male = input[3];
+    const female = input[4];
+    const other = input[5];
+    validation = !!((male.checked) || (female.checked) || (other.checked));
     if (!validation){
         errorMessage[3].innerHTML = 'Choose your gender';
     } else {
@@ -126,14 +131,14 @@ function trim(s) {
 }
 
 function validateEmail() {
-    let trimEmail = trim(input[6].value);
     const emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
     const illegalChars = /[()<>,;:\\"\[\]]/;
-    if (input[6].value === '') {
+    const email = input[6];
+    if (email.value === '') {
         message(6, 4,'red', 'Please enter an email address!', false);
-    } else if(!emailFilter.test(trimEmail)) {
+    } else if(!emailFilter.test(trim(email.value))) {
         message(6,4,'red', 'Please enter a valid email', false);
-    } else if (input[6].value.match(illegalChars)) {
+    } else if (email.value.match(illegalChars)) {
         message(6,4,'red', 'Email contains invalid characters', false);
     } else {
         message(6,4,'green', 'Looks Good', true);
@@ -144,9 +149,10 @@ function validateEmail() {
 
 // Phone Pattern
 function validatePhone(){
+const phone = input[7];
 const illegalChars = /[^\d]/;
-const stripped = input[7].value.replace(/[\+()\.\-\ ]/gi, '');
-    if(input[7].value === '') {
+const stripped = phone.value.replace(/[\+()\.\-\ ]/gi, '');
+    if(phone.value === '') {
         message(7,5,'red','Please enter a phone number', false );
     } else if (illegalChars.test(stripped)) {
         message(7,5, 'red', 'Phone number contain illegal characters', false);
@@ -160,34 +166,39 @@ const stripped = input[7].value.replace(/[\+()\.\-\ ]/gi, '');
 }
 
 // Checkbox event
-input[9].onchange = function (){
-    if (input[9].checked) {
-        input[8].type = 'text';
+const passwordCheckbox = input[9];
+const confirmPasswordCheckbox = input[11];
+const Password = input[8];
+const confirmPassword = input[10];
+
+passwordCheckbox.onchange = function (){
+    if (passwordCheckbox.checked) {
+        Password.type = 'text';
     } else {
-        input[8].type = 'password';
+        Password.type = 'password';
     }
 };
-input[11].onchange = function (){
-    if (input[11].checked) {
-        input[10].type = 'text';
+confirmPasswordCheckbox.onchange = function (){
+    if (confirmPasswordCheckbox.checked) {
+        confirmPassword.type = 'text';
     } else {
-        input[10].type = 'password';
+        confirmPassword.type = 'password';
     }
 }
 
 //Passwords validation
 function validatePasswords () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if (input[8].value === ''){
+    if (Password.value === ''){
         message(8, 7, 'red', 'Please enter the password', false);
-    } else if(input[10].value === ''){
+    } else if(confirmPassword.value === ''){
         message(10, 8, 'red', 'Please confirm password', false);
-    } else if(input[8].value !== input[10].value){
+    } else if(Password.value !== confirmPassword.value){
         message(8, 10, 'red', 'Passwords Not Matching', false);
-    } else if(input[8].value.length < 8) {
+    } else if(Password.value.length < 8) {
         message(8, 6, 'red', 'Password must be at least 8 characters', false);
-    }else validation = !((!passDifficulty.test(input[8].value)) ||
-        (!passDifficulty.test(input[10].value)));
+    }else validation = !((!passDifficulty.test(Password.value)) ||
+        (!passDifficulty.test(confirmPassword.value)));
     return validation;
 }
 
@@ -198,15 +209,15 @@ function message2(x,color, message ){
 }
 
 //Password difficulty listener
-input[8].addEventListener('keypress', function () {
+Password.addEventListener('keypress', function () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if(!passDifficulty.test(input[8].value) ) {
+    if(!passDifficulty.test(Password.value) ) {
         message2(7, 'red', 'Weak Password');
-    }if(passDifficulty.test(input[8].value) ){
+    }if(passDifficulty.test(Password.value) ){
         message2(7, 'green', 'Strong Password');
-    }if(input[8].value !== input[10].value) {
+    }if(Password.value !== confirmPassword.value) {
         message2(10, 'red', 'Password not Matching ');
-    }if(input[8].value === input[10].value) {
+    }if(Password.value === confirmPassword.value) {
         message2(10, 'green', 'Password Matching');
     }
 });
@@ -224,7 +235,8 @@ function validateQuestionnaire () {
 
 //Validate terms & conditions
 function validateTermsConditions () {
-    if(input[12].checked){
+    const termsCheckbox = input[12];
+    if(termsCheckbox.checked){
         message2(12, 'green', 'Looks Good')
         validation = true;
     } else {
