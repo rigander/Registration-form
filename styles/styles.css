@@ -271,5 +271,6 @@ label.error{
 #shortPass{
     position: absolute;
     display: block;
+    margin-left: 80px;
     margin-top: -20px;
 }

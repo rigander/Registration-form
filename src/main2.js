@@ -6,27 +6,6 @@ const input = document.querySelectorAll('input');
 
 
 //Submit Data (AJAX Post)
-
-
-// submit.addEventListener('click', (event) =>{
-//     event.preventDefault();
-//     const Form = document.getElementById('form');
-//     const formData = new FormData(Form);
-//     const request = new XMLHttpRequest();
-//     request.open('POST', 'process.php');
-//     request.addEventListener('readystatechange', function() {
-//         if(this.readyState == 4 && this.status == 200) {
-//             let data = JSON.parse(this.reponseText);
-//             console.log(data);
-//         } else console.log('Post not Permitted');
-//     }
-//     );
-//     request.send(formData);
-// })
-
-
-
-
 submit.addEventListener('click', (event)=>{
     event.preventDefault();
         if (elValidate() === true) {
@@ -43,11 +22,6 @@ submit.addEventListener('click', (event)=>{
         } else console.log('Post not permitted');
 });
 
-// Data collection via simple string.
-// function dataCollector () {
-//   const Collector = `firstName=${input[0].value}&lastName=${input[1].value}&DateOfBirth=${input[2].value}&Gender=${document.querySelector('input[name="gender"]:checked').value}&Email=${input[6].value}&Phone=${input[7].value}&Password=${input[8].value}&ConfirmPassword=${input[10].value}&How-did-you-find-us=${document.querySelector('#select').value}&Terms-Conditions=Agreed`;
-//   return Collector;
-// }
 
 //Main Validator
 function elValidate() {
@@ -65,62 +39,71 @@ function elValidate() {
     return permissionGranted;
 }
 
-// Error Message
-function message(i,x,color, message, status ){
-    input[i].style.borderColor = color;
-    errorMessage[x].style.color = 'red';
-    errorMessage[x].innerHTML = message;
+
+// Messages
+const showError = (id, message, status) => {
+    const inputName = document.getElementById(id);
+    const inputDiv = inputName.parentElement;
+    const errorMessage = inputDiv.querySelector('span');
+    inputName.style.borderColor = 'red';
+    errorMessage.style.color = 'red';
+    errorMessage.textContent = message;
     validation = status;
-}
+};
+const showLooksGood = (id) => {
+    const inputName = document.getElementById(id);
+    const inputDiv = inputName.parentElement;
+    const errorMessage = inputDiv.querySelector('span');
+    inputName.style.borderColor = 'green';
+    errorMessage.style.color = 'green';
+    errorMessage.textContent = 'Looks Good';
+    validation = true;
+};
+
 
 // Validate first name
 function validateName() {
-    const name = input[0];
+    const name = document.getElementById('name');
      if (name.value.length <= 2) {
-         message(0,0, 'red', 'Fill up your Given Name', false);
+         showError('name', 'Fill up your Given Name', false);
     } else {
-         message(0,0,'green', 'Looks Good', true);
-        errorMessage[0].style.color = 'green';
-        validation = true;
+         showLooksGood('name');
     }
      return validation;
 }
 
 // Validate family name
 function validateFamilyName() {
-    const familyName = input[1];
+    const familyName = document.getElementById('fName');
     if (familyName.value.length <= 2) {
-        message(1,1,'red', 'Fill up your Family Name', false);
+        showError('fName', 'Full up your Family Name',false);
     } else {
-        message(1, 1, 'green','Looks Good', true);
-        errorMessage[1].style.color = 'green';
+        showLooksGood('fName');
     }
     return validation;
 }
 
 // Validate date of birth
 function validateDateOfBirth() {
-    const DateOfBirth = input[2];
+    const DateOfBirth = document.getElementById('dateOfB');
     if (DateOfBirth.value.length < 10) {
-        message(2,2, 'red', 'Fill up your Date of Birth', false);
+        showError('dateOfB','Fill up your Date of Birth', false);
     } else {
-        message(2, 2, 'green', 'Looks Good', true);
-        errorMessage[2].style.color = 'green';
+        showLooksGood('dateOfB');
     }
     return validation;
 }
 
 // Validate gender checkbox
 function validateGenderCheck() {
-    const male = input[3];
-    const female = input[4];
-    const other = input[5];
+    const male = document.getElementById('radioButton1');
+    const female = document.getElementById('radioButton2');
+    const other = document.getElementById('radioButton3');
     validation = !!((male.checked) || (female.checked) || (other.checked));
     if (!validation){
-        errorMessage[3].innerHTML = 'Choose your gender';
+        showError('radioButton1', 'Choose your gender', false);
     } else {
-        errorMessage[3].innerHTML = 'Looks Good';
-        errorMessage[3].style.color = 'green'
+        showLooksGood('radioButton1');
     }
     return validation;
 }
@@ -133,43 +116,41 @@ function trim(s) {
 function validateEmail() {
     const emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
     const illegalChars = /[()<>,;:\\"\[\]]/;
-    const email = input[6];
+    const email = document.getElementById('email');
     if (email.value === '') {
-        message(6, 4,'red', 'Please enter an email address!', false);
+        showError('email','Please enter an email address!', false);
     } else if(!emailFilter.test(trim(email.value))) {
-        message(6,4,'red', 'Please enter a valid email', false);
+        showError('email','Please enter a valid email', false);
     } else if (email.value.match(illegalChars)) {
-        message(6,4,'red', 'Email contains invalid characters', false);
+        showError('email', 'Email contains invalid characters', false);
     } else {
-        message(6,4,'green', 'Looks Good', true);
-        errorMessage[4].style.color = 'green';
+        showLooksGood('email');
     }
     return validation;
 }
 
 // Phone Pattern
 function validatePhone(){
-const phone = input[7];
+const phone = document.getElementById('phone');
 const illegalChars = /[^\d]/;
 const stripped = phone.value.replace(/[\+()\.\-\ ]/gi, '');
     if(phone.value === '') {
-        message(7,5,'red','Please enter a phone number', false );
+        showError('phone', 'Please enter a phone number', false);
     } else if (illegalChars.test(stripped)) {
-        message(7,5, 'red', 'Phone number contain illegal characters', false);
+        showError('phone','Phone number contain illegal characters', false);
     } else if (stripped.length<10) {
-        message(7, 5, 'red', 'Phone number is too short', false);
+        showError('phone', 'Phone number is too short', false);
     } else {
-        message(7, 5, 'green', 'Looks Good', true);
-        errorMessage[5].style.color = 'green';
+        showLooksGood('phone');
     }
     return validation;
 }
 
 // Checkbox event
-const passwordCheckbox = input[9];
-const confirmPasswordCheckbox = input[11];
-const Password = input[8];
-const confirmPassword = input[10];
+const passwordCheckbox = document.getElementById('passInput');
+const confirmPasswordCheckbox = document.getElementById('confirmPassInput');
+const Password = document.getElementById('pass1');
+const confirmPassword = document.getElementById('pass2');
 
 passwordCheckbox.onchange = function (){
     if (passwordCheckbox.checked) {
@@ -189,47 +170,39 @@ confirmPasswordCheckbox.onchange = function (){
 //Passwords validation
 function validatePasswords () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if (Password.value === ''){
-        message(8, 7, 'red', 'Please enter the password', false);
-    } else if(confirmPassword.value === ''){
-        message(10, 8, 'red', 'Please confirm password', false);
+    if ((Password.value === '')||(confirmPassword.value === '')){
+        showError('pass1','Please enter the password & confirm password', false);
     } else if(Password.value !== confirmPassword.value){
-        message(8, 10, 'red', 'Passwords Not Matching', false);
+        showError('passwordsNotEqual', 'Passwords Not Matching', false);
     } else if(Password.value.length < 8) {
-        message(8, 6, 'red', 'Password must be at least 8 characters', false);
+        showError('pass2','Password must be at least 8 characters', false);
     }else validation = !((!passDifficulty.test(Password.value)) ||
         (!passDifficulty.test(confirmPassword.value)));
     return validation;
 }
 
-// Error Message 2
-function message2(x,color, message ){
-    errorMessage[x].style.color = color;
-    errorMessage[x].innerHTML = message;
-}
+
 
 //Password difficulty listener
 Password.addEventListener('keypress', function () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).+$/;
     if(!passDifficulty.test(Password.value) ) {
-        message2(7, 'red', 'Weak Password');
+        showError('pass1', 'Weak Password');
     }if(passDifficulty.test(Password.value) ){
-        message2(7, 'green', 'Strong Password');
+        showLooksGood('pass1');
     }if(Password.value !== confirmPassword.value) {
-        message2(10, 'red', 'Password not Matching ');
+        showError('shortRepeatPass', 'Passwords not matching');
     }if(Password.value === confirmPassword.value) {
-        message2(10, 'green', 'Password Matching');
+        showLooksGood('shortRepeatPass');
     }
 });
 
 //Validate questionnaire
 function validateQuestionnaire () {
     if(questionnaire.value === 'null'){
-        message2(11, 'red', 'Please choose one')
-        validation = false;
+        showError('select', 'Please choose one', false);
     } else if(questionnaire.value !== 'null'){
-        message2(11, 'green', 'Looks Good')
-        validation = true;
+        showLooksGood('select');
     } return validation;
 }
 
@@ -237,13 +210,16 @@ function validateQuestionnaire () {
 function validateTermsConditions () {
     const termsCheckbox = input[12];
     if(termsCheckbox.checked){
-        message2(12, 'green', 'Looks Good')
-        validation = true;
+        showLooksGood('agreement');
     } else {
-        message2(12, 'red', 'Please read and click if agree')
-        validation = false;
+        showError('agreement', 'Please read and click if agree', false);
     } return validation;
 }
+
+
+
+
+
 
 
 
