@@ -109,6 +109,7 @@ function validateGenderCheck() {
 }
 
 
+// Validate email
 function validateEmail() {
     const emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
     const illegalChars = /[()<>,;:\\"\[\]]/;
