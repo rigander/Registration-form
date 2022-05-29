@@ -94,24 +94,20 @@ function validateDateOfBirth() {
     return validation;
 }
 
-// Validate gender checkbox
+// Validate Gender checkbox
 function validateGenderCheck() {
-    const male = document.getElementById('radioButton1');
-    const female = document.getElementById('radioButton2');
-    const other = document.getElementById('radioButton3');
-    validation = !!((male.checked) || (female.checked) || (other.checked));
-    if (!validation){
-        showError('radioButton1', 'Choose your gender', false);
-    } else {
-        showLooksGood('radioButton1');
+    const genders = document.querySelectorAll('input[name="gender"]');
+    for (let i = 0; i < genders.length; i++) {
+        if (!genders[i].checked) {
+            showError('radioButton1', 'Choose your gender', false);
+        } else {
+            showLooksGood('radioButton1');
+            return validation;
+        }
     }
     return validation;
 }
 
-//Validate e-mail
-function trim(s) {
-    return s.replace(/^\s+|\s+$/, ''); // removes whitespace
-}
 
 function validateEmail() {
     const emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
@@ -119,7 +115,7 @@ function validateEmail() {
     const email = document.getElementById('email');
     if (email.value === '') {
         showError('email','Please enter an email address!', false);
-    } else if(!emailFilter.test(trim(email.value))) {
+    } else if(!emailFilter.test(email.value.trim())) {
         showError('email','Please enter a valid email', false);
     } else if (email.value.match(illegalChars)) {
         showError('email', 'Email contains invalid characters', false);
@@ -222,7 +218,19 @@ function validateTermsConditions () {
 
 
 
-
+// Validate gender checkbox
+// function validateGenderCheck() {
+//     const male = document.getElementById('radioButton1');
+//     const female = document.getElementById('radioButton2');
+//     const other = document.getElementById('radioButton3');
+//     validation = !!((male.checked) || (female.checked) || (other.checked));
+//     if (!validation){
+//         showError('radioButton1', 'Choose your gender', false);
+//     } else {
+//         showLooksGood('radioButton1');
+//     }
+//     return validation;
+// }
 
 
 
