@@ -135,6 +135,7 @@ form{
     background-color: #dabd69;
     border: solid 3px #383a3e;
     border-radius: 5px;
+    margin-top: 15px;
 }
 #pass2{
     height: 25px;
