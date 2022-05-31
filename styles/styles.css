@@ -156,13 +156,11 @@ form{
 label[for="select"]{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    text-align: left;
+    justify-content: left;
     width: 250px;
     line-height: 26px;
     margin-bottom: 10px;
-    margin-left: -25px;
-
+    padding-left: 0px;
 }
 #agreements{
     padding-top: 40px;
