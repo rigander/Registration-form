@@ -95,7 +95,7 @@ form{
     color: red;
     position: absolute;
     display: block;
-    margin: -15px  65px;
+    margin: -15px  155px;
 }
 #invalidPass{
     position: absolute;
@@ -126,10 +126,8 @@ form{
 #invalidPhone{
     display: block;
     position: absolute;
-    margin-top:0;
-    margin-left: 150px;
-    color: red;
-
+    margin-top:-52px;
+    margin-left: 154px;
 }
 #pass1{
     height: 25px;
@@ -149,19 +147,23 @@ form{
 #password{
     padding-top: 50px;
 }
-i{
-    position: absolute;
-    margin-top: 3px;
-    margin-left: -35px;
-    color: #3c3f41;
-}
-
 #select{
     height: 28px;
     width: 260px;
     background-color: #dabd69;
     border: solid 3px #383a3e;
     border-radius: 5px;
+}
+label[for="select"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: left;
+    width: 250px;
+    line-height: 26px;
+    margin-bottom: 10px;
+    margin-left: -25px;
+
 }
 #agreements{
     padding-top: 40px;
@@ -249,12 +251,12 @@ label.error{
 #invalidSelect{
     position: absolute;
     display: block;
-    margin: 0;
+    margin: -45px 153px;
 }
 #invalidTerms{
     position: absolute;
     display: block;
-    margin:-12px 5px ;
+    margin:-12px 153px ;
     color: red;
 }
 
@@ -266,11 +268,15 @@ label.error{
     position: absolute;
     display: block;
     margin-top: -50px;
+    margin-left: 154px;
 
 }
 #shortPass{
     position: absolute;
     display: block;
-    margin-left: 80px;
-    margin-top: -20px;
+    width: 300px;
+    margin-left: 154px;
+    margin-top: 50px;
+    font-size: 16px;
 }
+
