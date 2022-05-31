@@ -1,4 +1,9 @@
 const password = document.getElementById('pass1');
+const confirmPassword = document.getElementById('pass2');
+const passwordCheckbox = document.getElementById('passInput');
+const confirmPasswordCheckbox = document.getElementById('confirmPassInput');
+const shortPass = document.getElementById('shortPass');
+const shortRepeatPassword = document.getElementById('shortRepeatPass');
 const submit = document.querySelector('#submit');
 const questionnaire = document.getElementById('select');
 const input = document.querySelectorAll('input');
@@ -6,6 +11,14 @@ const input = document.querySelectorAll('input');
 
 //Submit Data (AJAX Post)
 submit.addEventListener('click', (event)=>{
+    validateFamilyName();
+    validateDateOfBirth();
+    validateGenderCheck();
+    validateEmail();
+    validatePhone();
+    validatePasswords();
+    validateQuestionnaire();
+    validateTermsConditions();
     event.preventDefault();
         if (elValidate() === true) {
             const Form = document.getElementById('form');
@@ -20,18 +33,6 @@ submit.addEventListener('click', (event)=>{
             xhr.send(formData);
         } else console.log('Post not permitted');
 });
-
-submit.addEventListener('click', ()=> {
-    validateFamilyName();
-    validateDateOfBirth();
-    validateGenderCheck();
-    validateEmail();
-    validatePhone();
-    validatePasswords();
-    validateQuestionnaire();
-    validateTermsConditions();
-});
-
 
 //Main Validator
 function elValidate() {
@@ -155,16 +156,11 @@ const stripped = phone.value.replace(/[\+()\.\-\ ]/gi, '');
 }
 
 // Checkbox event
-const passwordCheckbox = document.getElementById('passInput');
-const confirmPasswordCheckbox = document.getElementById('confirmPassInput');
-const Password = document.getElementById('pass1');
-const confirmPassword = document.getElementById('pass2');
-
 passwordCheckbox.onchange = function (){
     if (passwordCheckbox.checked) {
-        Password.type = 'text';
+        password.type = 'text';
     } else {
-        Password.type = 'password';
+        password.type = 'password';
     }
 };
 confirmPasswordCheckbox.onchange = function (){
@@ -175,44 +171,52 @@ confirmPasswordCheckbox.onchange = function (){
     }
 }
 
-//Passwords validation
-
-const shortPass = document.getElementById('shortPass');
-
+//Validate Passwords
 function validatePasswords () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*\d.*\d)(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if ((Password.value === '')||(confirmPassword.value === '')){
+    if ((password.value === '')||(confirmPassword.value === '')){
         showError('pass1','Please enter password fields', false);
-        shortPass.style.marginTop = '50px';
-        shortPass.style.fontSize = '16px';
-        shortPass.style.marginLeft = '154px';
-    } else if(Password.value !== confirmPassword.value){
-        showError('passwordsNotEqual', 'Passwords Not Matching', false);
-    } else if(Password.value.length < 8) {
+        shortPass.style.cssText = "margin-top: 50px; font-size: 16px; margin-left: 154px; color: red";
+    } else if(password.value !== confirmPassword.value){
+        validation = false;
+    } else if(password.value.length < 8) {
         showError('pass2','Password must be at least 8 characters', false);
-    }else validation = !((!passDifficulty.test(Password.value)) ||
-        (!passDifficulty.test(confirmPassword.value)));
+    }else {
+        validation = !((!passDifficulty.test(password.value)) ||
+            (!passDifficulty.test(confirmPassword.value)));
+            password.style.borderColor = 'green';
+            confirmPassword.style.borderColor = 'green';
+            showLooksGood('pass1');
+            shortPass.style.cssText = "margin-top: 50px; margin-left: 154px; font-size: 16px";
+    }
     return validation;
 }
 
 
-//Password  listener
-Password.addEventListener('input', function () {
+//Passwords  listener
+document.getElementById('passwordsInputs').addEventListener('keyup', function (event) {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*\d.*\d)(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if(!passDifficulty.test(Password.value) ) {
-        showError('pass1', 'Password must be at least 8 characters,' +
-     '  (2 number, 1 special symbol(#$@&*!), 2 uppercase and 2 lowercase letters)');
-        shortPass.style.marginTop = '-47px';
-        shortPass.style.fontSize = '14px';
-        shortPass.style.width = '230px';
-    }if(passDifficulty.test(Password.value) ){
-        shortPass.innerHTML = '';
-    }if(Password.value !== confirmPassword.value) {
-        showError('shortRepeatPass', 'Passwords not matching');
-    }if(Password.value === confirmPassword.value) {
-        document.getElementById('shortRepeatPass').innerHTML = '';
+    if(event.target.className === 'passwords') {
+        if(!passDifficulty.test(password.value) ) {
+            showError('pass1', 'Password must be at least 8 characters,' +
+                '  (2 number, 1 special symbol(#$@&*!), 2 uppercase and 2 lowercase letters)');
+            shortPass.style.cssText = "margin-top: -47px; font-size: 14px; width: 230px; color:red;";
+            password.style.borderColor = 'red';
+            confirmPassword.style.borderColor = 'red';
+        }if(confirmPassword.value !== password.value) {
+            showError('shortRepeatPass', 'Passwords not matching');
+            password.style.borderColor = 'red';
+            confirmPassword.style.borderColor = 'red';
+        }if (passDifficulty.test(password.value)) {
+            shortPass.innerHTML = '';
+        }if(passDifficulty.test(password.value) && (confirmPassword.value === password.value)){
+            password.style.borderColor = 'green';
+            confirmPassword.style.borderColor = 'green';
+            shortRepeatPassword.innerHTML = '';
+        }
     }
 });
+
 
 //Validate questionnaire
 function validateQuestionnaire () {

@@ -143,7 +143,6 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
-
 #password{
     padding-top: 50px;
 }
@@ -267,7 +266,7 @@ label.error{
 #shortRepeatPass{
     position: absolute;
     display: block;
-    margin-top: -50px;
+    margin-top: -58px;
     margin-left: 154px;
 
 }
