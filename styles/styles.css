@@ -29,18 +29,6 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
-#invalidName{
-    color: red;
-    position: absolute;
-    display: block;
-    margin: -15px  155px;
-}
-#invalidFName{
-    color: red;
-    position: absolute;
-    display: block;
-    margin: -15px  155px;
-}
 #fName{
     margin-left: 30px;
     height: 25px;
@@ -85,22 +73,6 @@ form{
     border: solid 1px white;
     margin-right: 5px;
 }
-#invalidDOB{
-    color: red;
-    position: absolute;
-    display: block;
-    margin: -50px  155px;
-}
-#invalidGender{
-    color: red;
-    position: absolute;
-    display: block;
-    margin: -15px  155px;
-}
-#invalidPass{
-    position: absolute;
-    margin: 0 120px;
-}
 #email{
     margin-left: 71px;
     height: 25px;
@@ -108,12 +80,6 @@ form{
     background-color: #dabd69;
     border: solid 3px #383a3e;
     border-radius: 5px;
-}
-#invalidEmail{
-    color: red;
-    position: absolute;
-    display: block;
-    margin: -15px  155px;
 }
 #phone{
     margin-left: 76px;
@@ -123,12 +89,7 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
-#invalidPhone{
-    display: block;
-    position: absolute;
-    margin-top:-52px;
-    margin-left: 154px;
-}
+
 #pass1{
     height: 25px;
     width: 240px;
@@ -237,14 +198,40 @@ label[for="select"]{
     display: block;
     margin-left: 197px;
 }
-label.error{}
-label.error{
-    color:red;
-    font-size: 16px;
+#invalidName{
     position: absolute;
     display: block;
-    margin-left: 160px;
-
+    margin: -15px  155px;
+}
+#invalidFName{
+    position: absolute;
+    display: block;
+    margin: -15px  155px;
+}
+#invalidDOB{
+    position: absolute;
+    display: block;
+    margin: -50px  155px;
+}
+#invalidGender{
+    position: absolute;
+    display: block;
+    margin: -15px  155px;
+}
+#invalidEmail{
+    position: absolute;
+    display: block;
+    margin: -15px  155px;
+}
+#invalidPhone{
+    display: block;
+    position: absolute;
+    margin-top:-52px;
+    margin-left: 154px;
+}
+#invalidPass{
+    position: absolute;
+    margin: 0 120px;
 }
 #invalidSelect{
     position: absolute;
@@ -255,19 +242,6 @@ label.error{
     position: absolute;
     display: block;
     margin:-12px 153px ;
-    color: red;
-}
-
-#vanillaJS{
-    margin: 0;
-    display: block;
-}
-#shortRepeatPass{
-    position: absolute;
-    display: block;
-    margin-top: -58px;
-    margin-left: 154px;
-
 }
 #shortPass{
     position: absolute;
@@ -277,4 +251,15 @@ label.error{
     margin-top: 50px;
     font-size: 16px;
 }
+#shortRepeatPass{
+    position: absolute;
+    display: block;
+    margin-top: -58px;
+    margin-left: 154px;
+
+}
+.input-border-red{
+    border-color: #0015ff;
+}
+
 
