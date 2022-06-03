@@ -19,9 +19,8 @@ form{
 .group{
     padding-top: 16px;
     padding-left: 25px;
-
 }
-#name{
+.name{
     margin-left: 28px;
     height: 25px;
     width: 220px;
@@ -29,7 +28,7 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
-#fName{
+.fName{
     margin-left: 30px;
     height: 25px;
     width: 220px;
@@ -37,43 +36,43 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
-#dateOfB{
+.dateOfB{
     margin-left: 10px;
     height: 25px;
     width: 220px;
     background-color: #dabd69;
     border: solid 3px #383a3e;
     border-radius: 5px;}
-#dateOfB::-webkit-datetime-edit { padding: 1em; }
-#dateOfB::-webkit-datetime-edit-fields-wrapper {
+.dateOfB::-webkit-datetime-edit { padding: 1em; }
+.dateOfB::-webkit-datetime-edit-fields-wrapper {
     background: #d5bc63;
     border-radius: 1px;
     border: #416c7e 1px solid;
     padding: 0 2px;
 }
-#dateOfB::-webkit-datetime-edit-text {
+.dateOfB::-webkit-datetime-edit-text {
     color: #416c7e; padding: 0 0.3em;
 }
-#dateOfB::-webkit-datetime-edit-month-field {
+.dateOfB::-webkit-datetime-edit-month-field {
     color: #313336;
 
 }
-#dateOfB::-webkit-datetime-edit-day-field {
+.dateOfB::-webkit-datetime-edit-day-field {
     color: #313336;
 }
-#dateOfB::-webkit-datetime-edit-year-field {
+.dateOfB::-webkit-datetime-edit-year-field {
     color: #313336;
 }
-#dateOfB::-webkit-inner-spin-button {
+.dateOfB::-webkit-inner-spin-button {
     display: none;
 }
-#dateOfB::-webkit-calendar-picker-indicator {
+.dateOfB::-webkit-calendar-picker-indicator {
     background: #3b6d7d;
     border-radius: 50%;
     border: solid 1px white;
     margin-right: 5px;
 }
-#email{
+.email{
     margin-left: 71px;
     height: 25px;
     width: 220px;
@@ -81,7 +80,7 @@ form{
     border: solid 3px #383a3e;
     border-radius: 5px;
 }
-#phone{
+.phone{
     margin-left: 76px;
     height: 25px;
     width: 220px;
@@ -90,7 +89,7 @@ form{
     border-radius: 5px;
 }
 
-#pass1{
+.pass1{
     height: 25px;
     width: 240px;
     background-color: #dabd69;
@@ -98,7 +97,7 @@ form{
     border-radius: 5px;
     margin-top: 15px;
 }
-#pass2{
+.pass2{
     height: 25px;
     width: 240px;
     background-color: #dabd69;
@@ -198,7 +197,7 @@ label[for="select"]{
     display: block;
     margin-left: 197px;
 }
-#invalidName{
+.invalidName{
     position: absolute;
     display: block;
     margin: -15px  155px;
@@ -243,7 +242,7 @@ label[for="select"]{
     display: block;
     margin:-12px 153px ;
 }
-#shortPass{
+.short-pass{
     position: absolute;
     display: block;
     width: 300px;
@@ -258,8 +257,35 @@ label[for="select"]{
     margin-left: 154px;
 
 }
-.input-border-red{
-    border-color: #0015ff;
+.border-red{
+    border-color: red;
 }
+.border-green{
+    border-color: green;
+}
+.error-red{
+    color: red;
+}
+.looks-good{
+    color: green;
+}
+
+.pass-error{
+    margin-top: -47px;
+    font-size: 14px;
+    width: 230px;
+}
+
+.pass-error2{
+    margin-top: 50px;
+    font-size: 16px;
+    margin-left: 154px;
+    color: red;
+}
+
+
+
+
+
 
 

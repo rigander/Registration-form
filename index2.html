@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Form Vanilla JS Version</title>
-    <link rel="stylesheet" type="text/css" href = "styles/styles.css">
+    <link rel="stylesheet" type="text/css" href = "styles/style2.css">
 </head>
 <body class="wrapper">
 <form action="#" name="registration" id="form">
     <h1 title="Registration form">Registration Form</h1>
-    <div class="group">
-        <span id="invalidName" class="valid-feedback"></span>
-        <label for="name">First Name</label>
-        <input minlength="2" placeholder="Enter your first name..." id="name" name="firstName" type="text">
-    </div>
-    <div class="group">
-        <span id="invalidFName" class="valid-feedback"></span>
-        <label for="fName">Last Name</label>
-        <input minlength="2"  placeholder="Enter your family name..." id="fName" name="lastName" type="text">
-    </div>
-    <div class="group">
-        <label for="dateOfB">Date of birth</label>
-        <input  id="dateOfB" placeholder="yyyy.mm.dd" type="date" name="dateOfBirth">
-        <span id="invalidDOB" class="valid-feedback"></span>
+    <div class="container1">
+        <div class="group">
+            <span class="invalidName valid-feedback"></span>
+            <label for="name">First Name</label>
+            <input class="all-inputs name" minlength="2" placeholder="Enter your first name..." id="name" name="firstName"
+                   type="text">
+        </div>
+        <div class="group">
+            <span id="invalidFName" class="valid-feedback"></span>
+            <label for="fName">Last Name</label>
+            <input class="all-inputs fName" minlength="2" placeholder="Enter your family name..." id="fName" name="lastName"
+                   type="text">
+        </div>
+        <div class="group">
+            <label for="dateOfB">Date of birth</label>
+            <input class="all-inputs dateOfB" id="dateOfB" placeholder="yyyy.mm.dd" type="date" name="dateOfBirth">
+            <span id="invalidDOB" class="valid-feedback"></span>
+        </div>
     </div>
     <div class="group">
         <span id="invalidGender" class="valid-feedback"></span>
         <label for="radioButton1">Male</label>
-        <input type="radio" name="gender" value="male" id="radioButton1">
+        <input type="radio" class="radioButton1" name="gender" value="male" id="radioButton1">
         <label for="radioButton2">Female</label>
         <input type="radio" name="gender" value="female" id="radioButton2">
         <label for="radioButton3">Other</label>
@@ -35,18 +39,18 @@
     <div class="group">
         <span id="invalidEmail" class="valid-feedback"></span>
         <label for="email">E-mail</label>
-        <input  id="email" placeholder="enter your e-mail address..." type="email" name="Email">
+        <input class="all-inputs email" id="email" placeholder="enter your e-mail address..." type="email" name="Email">
     </div>
     <div class="group">
         <label for="phone">Phone</label>
-        <input name="phoneNumber" id="phone" placeholder="+(380)00-000-0000" type="text">
+        <input class="all-inputs phone" name="phoneNumber" id="phone" placeholder="+(380)00-000-0000" type="text">
         <span id="invalidPhone" class="valid-feedback"></span>
     </div>
     <div id="passwordsInputs">
         <div id="password" class="group">
-            <span id="shortPass" class="valid-feedback"></span>
+            <span id="shortPass" class="valid-feedback short-pass"></span>
             <label for="pass1">Password</label>
-            <input  class="passwords" name="Password" id="pass1" placeholder="enter your password..."
+            <input  class="passwords pass1" name="Password"  id="pass1" placeholder="enter your password..."
                    type="password">
             <input id="passInput" class="checkbox" type="checkbox">
             <span id="invalidPass" class="valid-feedback"></span>
@@ -58,14 +62,14 @@
         <div id="checkPass" class="group">
             <div>Repeat</div>
             <label for="pass2">Password</label>
-            <input class="passwords" name="confirmPassword" id="pass2" placeholder="repeat your password..." type="password">
+            <input class="passwords pass2" name="confirmPassword" id="pass2" placeholder="repeat your password..." type="password">
             <input id="confirmPassInput" class="checkbox" type="checkbox">
             <span id="shortRepeatPass" class="valid-feedback"></span>
         </div>
     </div>
     <div class="group" >
         <label for="select">How did you find us?</label>
-        <select  id="select" name="How-did-you-find-us">
+        <select class="all-inputs" id="select" name="How-did-you-find-us">
             <option value="null" selected>Choose from below...</option>
             <option value="Through a friend">Through a friend</option>
             <option value="Google">Google</option>

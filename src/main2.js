@@ -3,7 +3,6 @@ const confirmPassword = document.getElementById('pass2');
 const passwordCheckbox = document.getElementById('passInput');
 const confirmPasswordCheckbox = document.getElementById('confirmPassInput');
 const shortPass = document.getElementById('shortPass');
-const shortRepeatPassword = document.getElementById('shortRepeatPass');
 const submit = document.querySelector('#submit');
 const questionnaire = document.getElementById('select');
 const input = document.querySelectorAll('input');
@@ -52,21 +51,25 @@ function elValidate() {
 
 
 // Messages
-const showError = (id, message, status) => {
-    const inputName = document.getElementById(id);
+const showError = (classSelector, message, status) => {
+    const inputName = document.querySelector(classSelector);
     const inputDiv = inputName.parentElement;
     const errorMessage = inputDiv.querySelector('span');
-    inputName.style.borderColor = 'red';
-    errorMessage.style.color = 'red';
+    inputName.classList.add('border-red');
+    errorMessage.classList.add('error-red');
+    errorMessage.classList.remove('looks-good');
+    inputName.classList.remove('border-green');
     errorMessage.textContent = message;
     validation = status;
 };
-const showLooksGood = (id) => {
-    const inputName = document.getElementById(id);
+const showLooksGood = (classSelector) => {
+    const inputName = document.querySelector(classSelector);
     const inputDiv = inputName.parentElement;
     const errorMessage = inputDiv.querySelector('span');
-    inputName.style.borderColor = 'green';
-    errorMessage.style.color = 'green';
+    inputName.classList.add('border-green');
+    errorMessage.classList.add('looks-good');
+    inputName.classList.remove('border-red');
+    errorMessage.classList.remove('error-red');
     errorMessage.textContent = 'Looks Good';
     validation = true;
 };
@@ -74,11 +77,11 @@ const showLooksGood = (id) => {
 
 // Validate first name
 function validateName() {
-    const name = document.getElementById('name');
-     if (name.value.length <= 2) {
-         showError('name', 'Fill up your Given Name', false);
+    const givenName = document.querySelector('.name');
+     if (givenName.value.length <= 2) {
+         showError('.name', 'Fill up your Given Name', false);
     } else {
-         showLooksGood('name');
+         showLooksGood('.name');
     }
      return validation;
 }
@@ -87,9 +90,9 @@ function validateName() {
 function validateFamilyName() {
     const familyName = document.getElementById('fName');
     if (familyName.value.length <= 2) {
-        showError('fName', 'Full up your Family Name',false);
+        showError('.fName', 'Full up your Family Name',false);
     } else {
-        showLooksGood('fName');
+        showLooksGood('.fName');
     }
     return validation;
 }
@@ -98,9 +101,9 @@ function validateFamilyName() {
 function validateDateOfBirth() {
     const DateOfBirth = document.getElementById('dateOfB');
     if (DateOfBirth.value.length < 10) {
-        showError('dateOfB','Fill up your Date of Birth', false);
+        showError('.dateOfB','Fill up your Date of Birth', false);
     } else {
-        showLooksGood('dateOfB');
+        showLooksGood('.dateOfB');
     }
     return validation;
 }
@@ -110,9 +113,9 @@ function validateGenderCheck() {
     const genders = document.querySelectorAll('input[name="gender"]');
     for (let i = 0; i < genders.length; i++) {
         if (!genders[i].checked) {
-            showError('radioButton1', 'Choose your gender', false);
+            showError('.radioButton1', 'Choose your gender', false);
         } else {
-            showLooksGood('radioButton1');
+            showLooksGood('.radioButton1');
             return validation;
         }
     }
@@ -126,13 +129,13 @@ function validateEmail() {
     const illegalChars = /[()<>,;:\\"\[\]]/;
     const email = document.getElementById('email');
     if (email.value === '') {
-        showError('email','Please enter an email address!', false);
+        showError('.email','Please enter an email address!', false);
     } else if(!emailFilter.test(email.value.trim())) {
-        showError('email','Please enter a valid email', false);
+        showError('.email','Please enter a valid email', false);
     } else if (email.value.match(illegalChars)) {
-        showError('email', 'Email contains invalid characters', false);
+        showError('.email', 'Email contains invalid characters', false);
     } else {
-        showLooksGood('email');
+        showLooksGood('.email');
     }
     return validation;
 }
@@ -143,14 +146,13 @@ const phone = document.getElementById('phone');
 const illegalChars = /\D/;
 const stripped = phone.value.replace(/[\+()\.\-\ ]/gi, '');
     if(phone.value === '') {
-        showError('phone', 'Please enter a phone number', false);
-        document.getElementById('pass2').style.borderColor = 'red';
+        showError('.phone', 'Please enter a phone number', false);
     } else if (illegalChars.test(stripped)) {
-        showError('phone','Phone number contain illegal characters', false);
+        showError('.phone','Phone number contain illegal characters', false);
     } else if (stripped.length<10) {
-        showError('phone', 'Phone number is too short', false);
+        showError('.phone', 'Phone number is too short', false);
     } else {
-        showLooksGood('phone');
+        showLooksGood('.phone');
     }
     return validation;
 }
@@ -175,20 +177,27 @@ confirmPasswordCheckbox.onchange = function (){
 function validatePasswords () {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*\d.*\d)(?=.*[a-z].*[a-z].*[a-z]).+$/;
     if ((password.value === '')||(confirmPassword.value === '')){
-        showError('pass1','Please enter password fields', false);
-        shortPass.style.cssText = "margin-top: 50px; font-size: 16px; margin-left: 154px; color: red";
-    } else if(password.value !== confirmPassword.value){
-        validation = false;
-    } else if(password.value.length < 8) {
-        showError('pass2','Password must be at least 8 characters', false);
+        showError('#pass2');
+        showError('#pass1','Please enter password fields', false);
+        shortPass.classList.add('pass-error2');
+        shortPass.classList.remove('pass-error');
+    }else if(password.value !== confirmPassword.value){
+        showError('#pass2');
+        showError('#pass1','Passwords are not equal', false);
+        shortPass.classList.add('pass-error2');
+        shortPass.classList.remove('pass-error');
+    }else if((!passDifficulty.test(password.value))||(!passDifficulty.test(confirmPassword.value))) {
+        showError('#pass2');
+        showError('#pass1','Password must be at least 8 characters,(2 number, 1 special symbol(#$@&*!), 2 uppercase and 2 lowercase letters)', false);
+        shortPass.classList.add('pass-error');
+        shortPass.classList.remove('pass-error2');
     }else {
-        validation = !((!passDifficulty.test(password.value)) ||
-            (!passDifficulty.test(confirmPassword.value)));
-            password.style.borderColor = 'green';
-            confirmPassword.style.borderColor = 'green';
-            showLooksGood('pass1');
-            shortPass.style.cssText = "margin-top: 50px; margin-left: 154px; font-size: 16px";
+        showLooksGood('#pass1');
+        showLooksGood('#pass2');
+        shortPass.classList.remove('pass-error');
+        shortPass.classList.remove('pass-error2');
     }
+
     return validation;
 }
 
@@ -196,23 +205,22 @@ function validatePasswords () {
 //Passwords  listener
 document.getElementById('passwordsInputs').addEventListener('keyup', function (event) {
     const passDifficulty =/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*\d.*\d)(?=.*[a-z].*[a-z].*[a-z]).+$/;
-    if(event.target.className === 'passwords') {
-        if(!passDifficulty.test(password.value) ) {
-            showError('pass1', 'Password must be at least 8 characters,' +
-                '  (2 number, 1 special symbol(#$@&*!), 2 uppercase and 2 lowercase letters)');
-            shortPass.style.cssText = "margin-top: -47px; font-size: 14px; width: 230px; color:red;";
-            password.style.borderColor = 'red';
-            confirmPassword.style.borderColor = 'red';
-        }if(confirmPassword.value !== password.value) {
-            showError('shortRepeatPass', 'Passwords not matching');
-            password.style.borderColor = 'red';
-            confirmPassword.style.borderColor = 'red';
-        }if (passDifficulty.test(password.value)) {
-            shortPass.innerHTML = '';
-        }if(passDifficulty.test(password.value) && (confirmPassword.value === password.value)){
-            password.style.borderColor = 'green';
-            confirmPassword.style.borderColor = 'green';
-            shortRepeatPassword.innerHTML = '';
+    if( (event.target.id === 'pass1')||(event.target.id === 'pass2') ) {
+        if((!passDifficulty.test(password.value))||(!passDifficulty.test(confirmPassword.value))) {
+            showError('#pass2');
+            showError('#pass1','Password must be at least 8 characters,(2 number, 1 special symbol(#$@&*!), 2 uppercase and 2 lowercase letters)', false);
+            shortPass.classList.add('pass-error');
+            shortPass.classList.remove('pass-error2');
+        }else if(password.value !== confirmPassword.value){
+            showError('#pass2');
+            showError('#pass1','Passwords are not equal', false);
+            shortPass.classList.add('pass-error2');
+            shortPass.classList.remove('pass-error');
+        }else {
+            showLooksGood('#pass1');
+            showLooksGood('#pass2');
+            shortPass.classList.remove('pass-error');
+            shortPass.classList.remove('pass-error2');
         }
     }
 });
@@ -231,9 +239,9 @@ function validateQuestionnaire () {
 function validateTermsConditions () {
     const termsCheckbox = input[12];
     if(termsCheckbox.checked){
-        showLooksGood('agreement');
+        showLooksGood('#agreement');
     } else {
-        showError('agreement', 'Please read and click if agree', false);
+        showError('#agreement', 'Please read and click if agree', false);
     } return validation;
 }
 
